@@ -8,7 +8,9 @@ Medium
 Favorite
 
 Share
-Given two integers representing the numerator and denominator of a fraction, return the fraction in string format.
+Given two integers representing the numerator and denominator of a fraction, 
+
+return the fraction in string format.
 
 If the fractional part is repeating, enclose the repeating part in parentheses.
 
@@ -26,6 +28,17 @@ Input: numerator = 2, denominator = 3
 Output: "0.(6)"
 
 
+XOR operations
+
++  +  => 0
+
+-  -  => 0
+
++  -  => 1
+
+-  +  => 1
+
+
 class Solution {
     public String fractionToDecimal(int numerator, int denominator) {
         if(numerator==0) return "0";
@@ -38,6 +51,8 @@ class Solution {
         sb.append(String.valueOf(a));
         if(numerator%denominator==0) return sb.toString();
         sb.append(".");
+
+        
         HashMap<Long,Integer> map = new HashMap<>();
         while(b!=0){
             if(map.containsKey(b)){

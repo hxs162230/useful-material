@@ -45,7 +45,9 @@ Input:
 s = "adceb"
 p = "*a*b"
 Output: true
-Explanation: The first '*' matches the empty sequence, while the second '*' matches the substring "dce".
+Explanation: The first '*' matches the empty sequence, while the second '*' 
+
+matches the substring "dce".
 Example 5:
 
 Input:

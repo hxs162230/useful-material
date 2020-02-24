@@ -10,9 +10,13 @@ Favorite
 Share
 Implement a basic calculator to evaluate a simple expression string.
 
-The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+The expression string may contain open ( and closing parentheses ), 
 
-The expression string contains only non-negative integers, +, -, *, / operators , open ( and closing parentheses ) and empty spaces . The integer division should truncate toward zero.
+the plus + or minus sign -, non-negative integers and empty spaces .
+
+The expression string contains only non-negative integers, +, -, *, / operators , 
+
+open ( and closing parentheses ) and empty spaces . The integer division should truncate toward zero.
 
 You may assume that the given expression is always valid. All intermediate results will be in the range of [-2147483648, 2147483647].
 
@@ -38,14 +42,14 @@ class Solution {
                 num = num*10 + c-'0';
             }
             if(c=='('){
-            int count = 0;
-            int j=i;
-            for(;i<s.length();i++){
-                if(s.charAt(i)=='(') count++;
-                if(s.charAt(i)==')') count--;
-                if(count==0) break;
-            }
-                num = calculate(s.substring(j+1,i));
+                int count = 0;
+                int j=i;
+                for(;i<s.length();i++){
+                    if(s.charAt(i)=='(') count++;
+                    if(s.charAt(i)==')') count--;
+                    if(count==0) break;
+                }
+                    num = calculate(s.substring(j+1,i));
             }    
             if(c=='+'||c=='-'||c=='*'||c=='/'||i==s.length()-1){
                 switch (op) {

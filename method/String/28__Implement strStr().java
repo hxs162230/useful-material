@@ -33,3 +33,58 @@ class Solution {
         return -1;
     }
 }
+
+
+kmp create LPS
+public int strstr(String pat,String txt){
+    int[] lps = LPS(pat);
+    int i=0;
+    int j=0;
+    while(i<pat.length()){
+        if(pat.charAt(i)==txt.charAt(j)){
+            i++;
+            j++;
+        }
+        if(j==M){
+            return i-j;
+            //j = lps[j-1];
+        }
+        if(i<pat.length()&&pat.charAt(i)!=txt.charAt(j)){
+            if(j!=0){
+                j = lps[j-1];
+            }
+            else{
+                i++;
+            }
+        }
+
+    }
+
+}
+
+
+public int[] LPS(String pat){
+    int len = pat.length();
+    int[] lps = new int[len];
+    lps[0] = 0;
+    int i=1;
+    int l = 0;
+
+    while(i<len){
+        if(pat.chatAt(i)==pat.charAt(l)){
+            lps[i++] = ++l;
+        }
+        else{
+            if(l>0){
+                l = lps[l-1];
+            }
+            else{
+                i++;
+            }
+        }
+    }
+    return len;
+}
+
+
+

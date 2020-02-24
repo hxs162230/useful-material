@@ -1,12 +1,26 @@
 68. Text Justification
 
-Given an array of words and a width maxWidth, format the text such that each line has exactly maxWidth characters and is fully (left and right) justified.
+Given an array of words and a width maxWidth, 
 
-You should pack your words in a greedy approach; that is, pack as many words as you can in each line. Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+format the text such that each line has exactly maxWidth characters 
 
-Extra spaces between words should be distributed as evenly as possible. If the number of spaces on a line do not divide evenly between words, the empty slots on the left will be assigned more spaces than the slots on the right.
+and is fully (left and right) justified.
 
-For the last line of text, it should be left justified and no extra space is inserted between words.
+You should pack your words in a greedy approach; that is, 
+
+pack as many words as you can in each line. 
+
+Pad extra spaces ' ' when necessary so that each line has exactly maxWidth characters.
+
+Extra spaces between words should be distributed as evenly as possible. 
+
+If the number of spaces on a line do not divide evenly between words, 
+
+the empty slots on the left will be assigned more spaces than the slots on the right.
+
+For the last line of text, it should be left justified and no extra space is inserted 
+
+between words.
 
 Note:
 
@@ -66,6 +80,7 @@ class Solution {
                 len+=words[j++].length();
             }
             int space = maxWidth - len;
+            
             StringBuilder sb = new StringBuilder();
             
             int tmp=0;
@@ -73,7 +88,7 @@ class Solution {
                     
                 sb.append(words[k]);
                 if(space>0){    
-                if(j==words.length){
+                    if(j==words.length){
                         if(j-1-k==0) tmp=space; 
                         else tmp=1;
                     }

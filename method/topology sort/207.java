@@ -1,4 +1,5 @@
 207. Course Schedule
+
 Medium
 
 2357
@@ -8,9 +9,12 @@ Medium
 Favorite
 
 Share
+
 There are a total of n courses you have to take, labeled from 0 to n-1.
 
-Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+Some courses may have prerequisites, 
+
+for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
 
 Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
 
@@ -29,7 +33,8 @@ Explanation: There are a total of 2 courses to take.
              also have finished course 1. So it is impossible.
 Note:
 
-The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+The input prerequisites is a graph represented by a list of edges, not adjacency matrices. 
+Read more about how a graph is represented.
 You may assume that there are no duplicate edges in the input prerequisites.
 
 T:O(V+E)
@@ -37,6 +42,8 @@ tpSort 無環圖
 
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
+        //setup map
+
         HashMap<Integer,List<Integer>> map = new HashMap<>();
         int[] indegree = new int[numCourses];
         for(int[] pre:prerequisites){
@@ -45,6 +52,7 @@ class Solution {
             map.get(pre[1]).add(pre[0]);
             ++indegree[pre[0]];
         }
+        
         Queue<Integer> q = new LinkedList<>();
         for(int i=0;i<numCourses;i++){
             if(indegree[i]==0) 

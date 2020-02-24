@@ -1,6 +1,8 @@
 273. Integer to English Words
 
-Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 231 - 1.
+Convert a non-negative integer to its english words representation. 
+
+Given input is guaranteed to be less than 231 - 1.
 
 Example 1:
 

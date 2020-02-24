@@ -40,6 +40,8 @@ class Solution {
         return str;
     }
 }
+
+
 sol2:
 class Solution {
     public String countAndSay(int n) {
@@ -61,5 +63,28 @@ class Solution {
             }
         }
         return sb.toString();
+    }
+}
+
+
+
+class Solution {
+    public String countAndSay(int n) {
+        String str = "1";
+        while(--n>0){
+            char[] c = str.toCharArray();
+            StringBuilder sb = new StringBuilder();
+            int cnt = 1;
+            for(int i=0;i<c.length;i++){
+                while(i+1<c.length&&c[i]==c[i+1]){
+                    cnt++;
+                    i++;
+                }
+                sb.append(String.valueOf(cnt)).append(c[i]);
+                cnt = 1;
+            }
+            str = sb.toString();
+        }
+        return str;
     }
 }

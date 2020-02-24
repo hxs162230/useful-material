@@ -39,7 +39,8 @@ Explanation: The first version number does not have a third level revision numbe
 
 Note:
 
-Version strings are composed of numeric strings separated by dots . and this numeric strings may have leading zeroes.
+Version strings are composed of numeric strings separated by dots . 
+and this numeric strings may have leading zeroes.
 Version strings do not start or end with dots, and they will not be two consecutive dots.
 
 class Solution {
