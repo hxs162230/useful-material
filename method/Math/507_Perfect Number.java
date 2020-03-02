@@ -21,10 +21,8 @@ class Solution {
         for(int i=2;i*i<=num;i++){
             if(num%i==0){
                 sum+=i+(i*i==num?0:num/i);
-               
-               //ystem.out.println(sum);
             }
         }
-        return sum!=1 && sum==num;
+        return sum==num;
     }
 }

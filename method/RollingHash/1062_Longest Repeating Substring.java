@@ -8,7 +8,11 @@ Medium
 Add to List
 
 Share
-Given a string S, find out the length of the longest repeating substring(s). Return 0 if no repeating substring exists.
+Given a string S, 
+
+find out the length of the longest repeating substring(s). 
+
+Return 0 if no repeating substring exists.
 
  
 

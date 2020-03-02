@@ -1,6 +1,8 @@
 973. K Closest Points to Origin
 
-We have a list of points on the plane.  Find the K closest points to the origin (0, 0).
+We have a list of points on the plane.  
+
+Find the K closest points to the origin (0, 0).
 
 (Here, the distance between two points on a plane is the Euclidean distance.)
 

@@ -21,6 +21,7 @@ m.next(5) = (10 + 3 + 5) / 3
 class MovingAverage {
     Deque<Integer> dq = new LinkedList<>();
     int cap = 0;
+    int sum = 0;
     /** Initialize your data structure here. */
     public MovingAverage(int size) {
         this.cap = size;
@@ -28,12 +29,14 @@ class MovingAverage {
     
     public double next(int val) {
         dq.addLast(val);
-        if(dq.size()>cap) dq.pollFirst();
-        int sum = 0;
-        for(int i:dq) sum+=i;
-        return (double)sum/dq.size();
+        sum+=val;
+        if(dq.size()>cap) sum-=dq.pollFirst();
+        return (double) sum/dq.size();
     }
 }
+
+
+
 
 /**
  * Your MovingAverage object will be instantiated and called as such:

@@ -37,6 +37,17 @@ Follow up:
 What is the expected value for the number of calls to rand7() function?
 Could you minimize the number of calls to rand7()?
 
+==============================
+rand2     rand2      
+	1		1		1
+	2		2		4
+	2		1		2
+	1		2		2
+==============================
+
+
+
+
 class Solution extends SolBase {
     public int rand10() {
         int val = 41;

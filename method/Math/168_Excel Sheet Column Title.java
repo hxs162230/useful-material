@@ -12,6 +12,12 @@ For example:
     27 -> AA
     28 -> AB 
     ...
+29 AC
+29-1 = 28;
+28%26 = 2;  =>C;
+28/26 = 1;
+loop... 
+
 Example 1:
 
 Input: 1

@@ -49,3 +49,55 @@ class Solution {
 
 
 
+KMP算法 O(N)
+
+這題第一個出發點是 從頭開始找 最長的回文子串
+如果用naive方法的話 有n個子串 每個要花O(n)時間驗證是不是回文 就O(n^2)了
+
+因為之前讀過KMP算法 知道其中一個核心就是Longest prefix suffix
+假如S = ABAXY
+那我們生成一個新字串K = ABAXY_XYABA
+也就是s + "_" + reversed(s)
+那麼K的Longest prefix suffix 就是S的從頭最長的回文串
+也就是ABA
+
+
+int longestPrefixSuffix(string s) {
+    int n = s.length();
+    int lps[n];
+    lps[0] = 0;
+    int len = 0;
+     
+    int i = 1;
+    while (i < n) {
+        if (s[i] == s[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        } else {
+            if (len != 0) len = lps[len-1];
+            else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+    int res = lps[n-1];
+    return (res > n/2)? n/2 : res;
+}
+ 
+class Solution {
+public:
+    string shortestPalindrome(string s) {
+        if (s.size() == 0) return s;
+        string r = s;
+        reverse(r.begin(), r.end());
+        string t = s + "_" + r;
+        int pos = longestPrefixSuffix(t);
+        return r.substr(0, s.size()-pos) + s;
+    }
+};
+
+int longestPrefixSuffix(string s)這個函數是直接從
+https://www.geeksforgeeks.org/longest-prefix-also-suffix/
+拿下來的
