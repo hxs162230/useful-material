@@ -23,7 +23,7 @@ class Solution {
         HashMap<Integer,Integer> map = new HashMap<>();
         int sum=0;
         int size=0;
-        map.put(0,-1);
+        map.put(0,-1);  
         //            直接減去
         //     j         i          i-j
         //  (sum-k)     sum          k
@@ -33,9 +33,18 @@ class Solution {
             if(map.containsKey(sum-k)){
                 size = Math.max(size,i-map.get(sum-k));
             }
-            if(!map.containsKey(sum))
+            if(!map.containsKey(sum))   //put first encounter sum inside the map.
             map.put(sum,i);
         }
         return size;
     }
 }
+                       cur scan
+                          |
+        sum
+|_________________________|
+
+    sum-k       k
+|__________|______________|
+
+掃描=>目前合為sum=>找sum-k=>注意此時map存的INDEX(not inclusive)

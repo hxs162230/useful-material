@@ -1,0 +1,18 @@
+
+Map Reduce
+https://www.youtube.com/watch?v=Rz8JCS9TfOQ
+
+Big table
+https://www.youtube.com/watch?v=r1bh90_8dsg
+
+GFS
+https://www.youtube.com/watch?v=WLad7CCexo8
+
+NoSQL
+https://www.youtube.com/watch?v=yFjquiJbDkg
+
+microService
+https://www.youtube.com/watch?v=l-eFRuyl1b8
+
+Snake principle
+https://www.youtube.com/watch?v=37aT0mcnd5U

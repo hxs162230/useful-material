@@ -22,6 +22,8 @@ T:O(N)
 S:O(N)
 此類問題記得HashMap的初始化
 
+跟位置有關 map.put(0,-1);
+跟次數有關 map.put(0, 1);
 
 
 class Solution {
@@ -30,6 +32,7 @@ class Solution {
         int sum=0;
         int res=0;
         preSum.put(0,1);
+
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
             if(preSum.containsKey(sum-k))

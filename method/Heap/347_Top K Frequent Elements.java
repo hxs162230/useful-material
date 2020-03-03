@@ -32,6 +32,7 @@ class Solution {
         for(Map.Entry<Integer,Integer> max : map.entrySet()){
             q.add(max);
         }
+
         for(int i=1;i<=k;i++){
             
             lst.add(q.poll().getKey());
@@ -44,6 +45,7 @@ class cmp implements Comparator<Map.Entry<Integer,Integer>> {
      return b.getValue()-a.getValue();   
     }
 }
+
 (Nlogk)
 class Solution {
     public List<Integer> topKFrequent(int[] nums, int k) {

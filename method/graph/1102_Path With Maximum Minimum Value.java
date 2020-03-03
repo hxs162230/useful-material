@@ -8,17 +8,27 @@ Medium
 Favorite
 
 Share
-Given a matrix of integers A with R rows and C columns, find the maximum score of a path starting at [0,0] and ending at [R-1,C-1].
+Given a matrix of integers A with R rows and C columns, 
 
-The score of a path is the minimum value in that path.  For example, the value of the path 8 →  4 →  5 →  9 is 4.
+find the maximum score of a path starting at [0,0] and ending at [R-1,C-1].
 
-A path moves some number of times from one visited cell to any neighbouring unvisited cell in one of the 4 cardinal directions (north, east, west, south).
+The score of a path is the minimum value in that path. 
+
+For example, the value of the path 8 →  4 →  5 →  9 is 4.
+
+A path moves some number of times from one visited cell to any 
+
+neighbouring unvisited cell in one of the 4 cardinal directions 
+
+(north, east, west, south).
 
  
 
 Example 1:
 
-
+545
+126
+746
 
 Input: [[5,4,5],[1,2,6],[7,4,6]]
 Output: 4
@@ -46,6 +56,9 @@ Note:
 T:O(MNlogMN)
 S:O(MN)
 
+*****每次找最大的一步(from content);
+
+
 class Solution {
     public int maximumMinimumPath(int[][] A) {
         if(A.length==0||A[0].length==0) return -1;
@@ -54,6 +67,7 @@ class Solution {
         PriorityQueue<int[]> pq = new PriorityQueue<>(new cmp());
         int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
         pq.add(new int[]{A[0][0],0});
+        
         int minInpath = A[0][0];
         A[0][0]=-1;
         while(!pq.isEmpty()){

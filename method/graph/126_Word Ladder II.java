@@ -8,10 +8,16 @@ Hard
 Add to List
 
 Share
-Given two words (beginWord and endWord), and a dictionary's word list, find all shortest transformation sequence(s) from beginWord to endWord, such that:
+Given two words (beginWord and endWord), and a dictionary's word list, 
+
+find all shortest transformation sequence(s) from beginWord to endWord, 
+
+such that:
 
 Only one letter can be changed at a time
-Each transformed word must exist in the word list. Note that beginWord is not a transformed word.
+Each transformed word must exist in the word list. 
+
+Note that beginWord is not a transformed word.
 Note:
 
 Return an empty list if there is no such transformation sequence.
@@ -55,8 +61,8 @@ class Solution {
         HashSet<String> dict = new HashSet<>(wordList);
         dict.add(beginWord);
         distance.put(beginWord,0);
-        bfs(beginWord,endWord,neighbors,distance,dict);
-        dfs(beginWord,endWord,neighbors,distance,dict,solution,lol);
+        bfs(beginWord,endWord,neighbors,distance,dict); //buildgraph 順便建distance模
+        dfs(beginWord,endWord,neighbors,distance,dict,solution,lol); //DFS遍歷
         return lol;
     }
     public void bfs(String beginWord,String endWord,HashMap<String,Set<String>> neighbors,HashMap<String,Integer> distance,HashSet<String> dict){
@@ -75,14 +81,14 @@ class Solution {
                 for(String nb:nbs){
                     neighbors.get(word).add(nb);
                     if(!distance.containsKey(nb)){
-                    distance.put(nb,curDistance+1);
-                    if(endWord.equals(nb)){
-                        isFound = true;
+                        distance.put(nb,curDistance+1);
+                        if(endWord.equals(nb)){
+                            isFound = true;
+                        }
+                        else{
+                            q.add(nb);
+                        }
                     }
-                    else{
-                        q.add(nb);
-                    }
-                }
                 }
             }
             if(isFound) break;

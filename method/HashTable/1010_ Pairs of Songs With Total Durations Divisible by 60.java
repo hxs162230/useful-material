@@ -2,7 +2,11 @@
 
 In a list of songs, the i-th song has a duration of time[i] seconds. 
 
-Return the number of pairs of songs for which their total duration in seconds is divisible by 60.  Formally, we want the number of indices i < j with (time[i] + time[j]) % 60 == 0.
+Return the number of pairs of songs for which their total duration in seconds 
+
+is divisible by 60.  Formally, we want the number of indices i < j with 
+
+(time[i] + time[j]) % 60 == 0.
 
  
 
@@ -25,6 +29,10 @@ Note:
 
 1 <= time.length <= 60000
 1 <= time[i] <= 500
+
+// TWO SUM 變化題
+// 到目前為止做統計  
+// 統計完之後再做+1
 
 class Solution {
     public int numPairsDivisibleBy60(int[] time) {

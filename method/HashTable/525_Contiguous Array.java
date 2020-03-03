@@ -1,6 +1,8 @@
 525. Contiguous Array
 
-Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.
+Given a binary array, find the maximum length of a 
+
+contiguous subarray with equal number of 0 and 1.
 
 Example 1:
 Input: [0,1]
@@ -41,3 +43,10 @@ class Solution {
         return res;
     }
 }
+
+subarray 變種
+
+0=>-1
+
+find longest subarray equals 0;
+

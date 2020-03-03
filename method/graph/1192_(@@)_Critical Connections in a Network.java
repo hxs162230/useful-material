@@ -1,12 +1,26 @@
 1192. Critical Connections in a Network
 
-There are n servers numbered from 0 to n-1 connected by undirected server-to-server connections forming a network where connections[i] = [a, b] represents a connection between servers a and b. Any server can reach any other server directly or indirectly through the network.
+There are n servers numbered from 0 to n-1 
 
-A critical connection is a connection that, if removed, will make some server unable to reach some other server.
+connected by undirected server-to-server connections 
+
+forming a network where connections[i] = [a, b] represents a 
+
+connection between servers a and b. 
+
+Any server can reach any other server directly or indirectly through 
+
+the network.
+
+A critical connection is a connection that, 
+
+if removed, will make some server unable to reach some other server.
 
 Return all critical connections in the network in any order.
 
-< Tarjan Algorithm is used for finding all strongly connected components in a graph.>
+< Tarjan Algorithm is used 
+
+for finding all strongly connected components in a graph.>
 
 Example 1:
 
@@ -23,6 +37,11 @@ Constraints:
 n-1 <= connections.length <= 10^5
 connections[i][0] != connections[i][1]
 There are no repeated connections.
+
+     |----------3     CP = 1;  
+0----1----2           CE = 1<-->3
+|         |  
+|---------|
 
 class Solution {
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {

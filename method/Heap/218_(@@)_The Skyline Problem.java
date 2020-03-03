@@ -36,6 +36,8 @@ There must be no consecutive horizontal lines of equal height in the output skyl
   //     sign of its height;
 
 T:O(NlogN) N=number of Buildings
+// [Li, Ri, Hi]
+
 class Solution {
     public List<List<Integer>> getSkyline(int[][] buildings) {
         List<List<Integer>> res  = new ArrayList<List<Integer>>();
@@ -45,6 +47,7 @@ class Solution {
             lst.add(new int[]{b[1],b[2]});
         }
         Collections.sort(lst,new cmp());
+        
         TreeMap<Integer,Integer> map = new TreeMap<>();
         map.put(0,0);
         int prev = 0;

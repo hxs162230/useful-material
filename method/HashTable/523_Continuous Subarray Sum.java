@@ -38,6 +38,7 @@ class Solution {
         int sum = 0;
         HashMap<Integer,Integer> map = new HashMap<>();
         map.put(0,-1);
+        
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
             int t=(k==0)?sum:sum%k;
@@ -51,3 +52,11 @@ class Solution {
         return false;
     }
 }
+
+
+        sum%k
+|_______________________|
+
+    
+   sum%      dividible
+|________|______________|

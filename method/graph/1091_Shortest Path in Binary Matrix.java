@@ -10,7 +10,9 @@ Favorite
 Share
 In an N by N square grid, each cell is either empty (0) or blocked (1).
 
-A clear path from top-left to bottom-right has length k if and only if it is composed of cells C_1, C_2, ..., C_k such that:
+A clear path from top-left to bottom-right has length k 
+
+if and only if it is composed of cells C_1, C_2, ..., C_k such that:
 
 Adjacent cells C_i and C_{i+1} are connected 8-directionally (ie., they are different and share an edge or corner)
 C_1 is at location (0, 0) (ie. has value grid[0][0])
@@ -42,6 +44,9 @@ Note:
 grid[r][c] is 0 or 1
 
 
+//dist[][] 找最短距離
+
+
 
 class Solution {
     public int shortestPathBinaryMatrix(int[][] grid) {
@@ -49,6 +54,7 @@ class Solution {
         int m=grid.length;
         int n=grid[0].length;
         int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1},{1,1},{-1,-1},{1,-1},{-1,1}};
+        
         int[][] dist = new int[m][n];
         for(int[] d:dist) Arrays.fill(d,Integer.MAX_VALUE);
         dist[0][0] = 0;

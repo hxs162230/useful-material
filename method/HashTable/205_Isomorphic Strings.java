@@ -2,9 +2,17 @@
 
 Given two strings s and t, determine if they are isomorphic.
 
-Two strings are isomorphic if the characters in s can be replaced to get t.
+Two strings are isomorphic if the characters in s can be replaced to 
 
-All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+get t.
+
+All occurrences of a character must be replaced with another character 
+
+hile preserving the order of characters. 
+
+No two characters may map to the same character but a character may map 
+
+to itself.
 
 Example 1:
 
@@ -30,7 +38,7 @@ class Solution {
                 return false;
             else{
                 map1[s.charAt(i)]=i+1;            //update from 1 
-                map2[t.charAt(i)]=i+1;		      //case: aa   ab
+                map2[t.charAt(i)]=i+1;		      //corner case: aa   ab
             }
         }
         return true;

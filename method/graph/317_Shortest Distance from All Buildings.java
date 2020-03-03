@@ -54,7 +54,9 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
         int[][] dist = new int[m][n];
-        int[][] cntOfbuilding = new int[m][n];
+
+        int[][] cntOfbuilding = new int[m][n]; !!!!!建立能看到幾個建築的關係
+        
         int[][] dir = new int[][]{
             {1,0},{-1,0},{0,1},{0,-1}
         };
@@ -77,7 +79,9 @@ class Solution {
                                 int nj = dr[1]+o_idx[1];
                                 if(ni>=0&&ni<m&&nj>=0&&nj<n&&grid[ni][nj]==0&&!seen[ni][nj]){
                                     dist[ni][nj]+=level;
+
                                     ++cntOfbuilding[ni][nj];
+                                    
                                     seen[ni][nj]=true;
                                     q.add(new int[]{ni,nj});
                                 }

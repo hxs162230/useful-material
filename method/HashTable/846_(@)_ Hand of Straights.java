@@ -1,8 +1,12 @@
 846. Hand of Straights
 
-Alice has a hand of cards, given as an array of integers.
+Alice has a hand of cards, 
 
-Now she wants to rearrange the cards into groups so that each group is size W, and consists of W consecutive cards.
+given as an array of integers.
+
+Now she wants to rearrange the cards into groups so that each group is size W, 
+
+and consists of W consecutive cards.
 
 Return true if and only if she can.
 
@@ -42,10 +46,15 @@ class Solution {
             for(int i=0;i<W;i++){
                 if(!tm.containsKey(first+i)) return false;
                 tm.put(first+i,tm.get(first+i)-1);
-                if(tm.get(first+i)==0) tm.remove(first+i);
-                
+                if(tm.get(first+i)==0) tm.remove(first+i);   
             }
         }
         return true;
     }
 }
+
+
+arr[];
+Width;
+consecutive;
+

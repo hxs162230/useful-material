@@ -63,6 +63,7 @@ class Solution {
         for(int[] dis:dist)
             Arrays.fill(dis,Integer.MAX_VALUE);
         dist[start[0]][start[1]]=0;
+        
         while(!q.isEmpty()){
             for(int i=q.size();i>0;i--){
                 int[] pos = q.poll();
