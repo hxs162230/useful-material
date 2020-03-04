@@ -1,6 +1,8 @@
 307. Range Sum Query - Mutable
 
-Given an integer array nums, find the sum of the elements between indices i and j (i ≤ j), inclusive.
+Given an integer array nums, 
+
+find the sum of the elements between indices i and j (i ≤ j), inclusive.
 
 The update(i, val) function modifies nums by updating the element at index i to val.
 
@@ -41,9 +43,8 @@ class NumArray {
     public void update(int i, int val) {
         tree.updateFenwick(i+1,val-nums[i]);
         this.nums[i]=val;
-        
     }
-    
+    //node i+1 ~ j+1;
     public int sumRange(int i, int j) {
        return tree.queryFenwick(j+1)-tree.queryFenwick(i);
     }

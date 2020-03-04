@@ -1,13 +1,18 @@
 157. Read N Characters Given Read4
 
-Given a file and assume that you can only read the file using a given method read4, 
+Given a file and assume that you can only read the file 
+
+using a given method read4, 
+
 implement a method to read n characters.
 
  
 
 Method read4:
 
-The API read4 reads 4 consecutive characters from the file, then writes those characters into the buffer array buf.
+The API read4 reads 4 consecutive characters from the file, 
+
+then writes those characters into the buffer array buf.
 
 The return value is the number of actual characters read.
 
@@ -30,7 +35,11 @@ read4(buf); // read4 returns 3. Now buf = "ijk", fp points to end of file
 
 Method read:
 
-By using the read4 method, implement the method read that reads n characters from the file and store it in the buffer array buf. Consider that you cannot manipulate the file directly.
+By using the read4 method, 
+
+implement the method read that reads n characters from the file and store it in the buffer array buf. \
+
+Consider that you cannot manipulate the file directly.
 
 The return value is the number of actual characters read.
 
@@ -66,14 +75,20 @@ Explanation: After calling your read method, buf should contain "leetc". We read
 
 Note:
 
-Consider that you cannot manipulate the file directly, the file is only accesible for read4 but not for read.
+Consider that you cannot manipulate the file directly, 
+the file is only accesible for read4 but not for read.
 The read function will only be called once for each test case.
-You may assume the destination buffer array, buf, is guaranteed to have enough space for storing n characters.
+You may assume the destination buffer array, buf, 
+is guaranteed to have enough space for storing n characters.
 
 /**
  * The read4 API is defined in the parent class Reader4.
  *     int read4(char[] buf);
  */
+
+
+read call one time;
+
 public class Solution extends Reader4 {
     /**
      * @param buf Destination buffer
