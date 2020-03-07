@@ -43,13 +43,13 @@ class Solution {
                 continue;
             }
             if(cmp<0){
-                i=i+k+1;
+                i=i+k+1;     //ab i compete j (此時j大)
             }
             else{
-                j=j+k+1;
+                j=j+k+1;     //ba j compete i (此時i大)
             }
             if(i==j) j++;
-            k=0;
+            k=0;             //reset k = 0 if compete occur;
         }
         return s.substring(Math.min(i,j));
     }

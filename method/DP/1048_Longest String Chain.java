@@ -41,11 +41,15 @@ Finally return the longest word chain.
 
 LC#300
 
+NlogN 
+N*M*M => words finite Character <=100
+N*10000=>N   
+N+NlogN = NlogN
 
 class Solution {
     public int longestStrChain(String[] words) {
         Arrays.sort(words,new cmp());
-        HashMap<String,Integer> dp = new HashMap<>();
+        HashMap<String,Integer> dp = new HashMap<>(); //string length KV
         int globalmax=0;
         for(String word:words){
             int max=0;

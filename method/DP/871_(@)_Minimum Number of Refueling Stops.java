@@ -4,9 +4,12 @@ A car travels from a starting position to a destination
 
 which is target miles east of the starting position.
 
-Along the way, there are gas stations.  Each station[i] represents a gas station 
+Along the way, there are gas stations.  
 
-that is station[i][0] miles east of the starting position, and has station[i][1] liters of gas.
+Each station[i] represents a gas station 
+
+that is station[i][0] miles east of the starting position, 
+and has station[i][1] liters of gas.
 
 The car starts with an infinite tank of gas, which initially has startFuel liters of fuel in it.  
 
@@ -16,7 +19,9 @@ When the car reaches a gas station, it may stop and refuel,
 
 transferring all the gas from the station into the car.
 
-What is the least number of refueling stops the car must make in order to reach its destination?  
+What is the least number of refueling stops 
+
+the car must make in order to reach its destination?  
 
 If it cannot reach the destination, return -1.
 
@@ -74,14 +79,18 @@ dp[i][j] = max{dp[i - 1][j], dp[i - 1][j - c[i]] + w[i]}
 有N种物品和一个容量为V的背包，每种物品都有无限件可用。第i种物品的费用是c[i]，价格是w[i].求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大
 
 思路
-这个问题类似于01背包问题，所不同的是每种物品有无限件。也就是从每种物品的角度考虑，与它相关的策略已非取或不取两种，而且右取0件、取1件、取2件...等很多种。如果仍然按照01背包的思路，令dp[i][v]表示前i种物品恰好放入一个容量为v的背包的最大权值。仍然可以按照每种物品不同的策略写出状态转移方程：
+这个问题类似于01背包问题，所不同的是每种物品有无限件。也就是从每种物品的角度考虑，
+与它相关的策略已非取或不取两种，
+而且右取0件、取1件、取2件...等很多种。如果仍然按照01背包的思路，
+令dp[i][v]表示前i种物品恰好放入一个容量为v的背包的最大权值。
+仍然可以按照每种物品不同的策略写出状态转移方程：
 
 f[i][v]=max{f[i-1][v],f[i][v-c[i]]+w[i]}
 
 
 
 此題為01背包變種
-
+前i取j
 class Solution {
     public int minRefuelStops(int target, int startFuel, int[][] stations) {
         int n = stations.length;
@@ -95,7 +104,7 @@ class Solution {
             for(int j=1;j<=i;j++){
                 if(dp[i-1][j]>=stations[i-1][0])
                     dp[i][j] = dp[i-1][j];
-                if(dp[i-1][j-1]>=stations[i-1][0])
+                if(dp[i-1][j-1]>=stations[i-1][0])   可以到達這個點(i)的條件
                 dp[i][j] = Math.max(dp[i][j],dp[i-1][j-1]+stations[i-1][1]);
             }
         }

@@ -1,12 +1,18 @@
 1000. Minimum Cost to Merge Stones
 
-There are N piles of stones arranged in a row.  The i-th pile has stones[i] stones.
+There are N piles of stones arranged in a row.  
+
+The i-th pile has stones[i] stones.
 
 A move consists of merging exactly K consecutive piles into one pile, 
 
-and the cost of this move is equal to the total number of stones in these K piles.
+and the cost of this move is equal to the total number of stones 
 
-Find the minimum cost to merge all piles of stones into one pile.  If it is impossible, return -1.
+in these K piles.
+
+Find the minimum cost to merge all piles of stones into one pile.  
+
+If it is impossible, return -1.
 
 Example 1:
 
@@ -80,7 +86,7 @@ Note:
 所以我们遍历的时候每次跳过 K-1 个位置即可，用 t 来分别区间 [i, j]，然后每次 t += K-1 即可，
 用两个小区间的dp值来更新整个区间。这还没有完，当某个子区间正好可以合并为一堆石子的时候，
 其 dp 值要加上该区间所有的石子数。举个最简单的例子，比如 [1, 2, 3]，K=3，那么我们分割的话，
-只能用 dp[0][0] + dp[1][2] 来更新 dp[0][1]，但是 dp[0][0] 和 dp[1][2] 均为0，
+只能用 dp[0][0] + dp[1][2] 来更新 dp[0][2]，但是 dp[0][0] 和 dp[1][2] 均为0，
 因为区间长度均小于3，那么我们的 dp[0][2] 值就无法更新成正确的值了，这三个数字是可以合并的，
 所以要加上区间内所有的数字之和，而为了快速的求得任意区间和，采用提前建立累加和数组sums的方式，
 来提高计算效率，所以整个状态转移方程为：

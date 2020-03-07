@@ -40,7 +40,7 @@ class Solution {
  				int j= i+len-1;
  				for(int k=i;k<=j;k++){
  					dp[i][j]=Math.max(dp[i][j],lst[i-1]*lst[k]*lst[j+1]+dp[i][k-1]+dp[k+1][j]);
- 				}
+ 				}                        //展開式
  			}
  		}
  		return dp[1][nums.length];

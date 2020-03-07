@@ -1,4 +1,31 @@
-class Solution {
+221. Maximal Square
+Medium
+
+2172
+
+54
+
+Add to List
+
+Share
+Given a 2D binary matrix filled with 0's and 1's, 
+
+find the largest square containing only 1's and return its area.
+
+Example:
+
+Input: 
+
+1 0 1 0 0
+1 0 1 1 1
+1 1 1 1 1
+1 0 0 1 0
+
+Output: 4
+
+
+
+Class Solution {
     /*
     dp[i][j] 代表在以i, j这一格为右下角的正方形边长。
     如果这一格的值也是1，那这个正方形的边长就是他的上面，

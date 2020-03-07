@@ -1,6 +1,12 @@
 983. Minimum Cost For Tickets
 
-In a country popular for train travel, you have planned some train travelling one year in advance.  The days of the year that you will travel is given as an array days.  Each day is an integer from 1 to 365.
+In a country popular for train travel, 
+
+you have planned some train travelling one year in advance.  
+
+The days of the year that you will travel is given as an array days.  
+
+Each day is an integer from 1 to 365.
 
 Train tickets are sold in 3 different ways:
 
@@ -54,7 +60,9 @@ class Solution {
             if(!set.contains(i)) 
                 calender[i]=calender[i-1];
             else{
-                calender[i]=Math.min(calender[Math.max(0,i-1)]+costs[0],Math.min(calender[Math.max(0,i-7)]+costs[1],calender[Math.max(0,i-30)]+costs[2]));
+                calender[i]=Math.min(calender[Math.max(0,i-1)]+costs[0],
+                            Math.min(calender[Math.max(0,i-7)]+costs[1],
+                                     calender[Math.max(0,i-30)]+costs[2]));
             }
         }
         return calender[365];

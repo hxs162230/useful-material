@@ -34,6 +34,18 @@ Your algorithm should run in O(n) time and uses constant extra space.
 如果不满足上述条件直接跳过，
 最后再遍历一遍数组，如果对应位置上的数不正确则返回正确的数，参见代码如下：
 
+
+
+o(NN)
+o(1)
+
+nums[nums[i]]<===>i+1
+nums[nums[i]-1]<===>i
+裏層while的停止條件有(搬回來的是正確值,
+                    大於範圍,
+                    小於範圍)
+
+
 class Solution {
     public int firstMissingPositive(int[] nums) {
         //nums[i]==i+1;

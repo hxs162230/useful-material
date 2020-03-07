@@ -1,6 +1,8 @@
 174. Dungeon Game
 
-The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.
+The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. 
+
+The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.
 
 The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.
 
@@ -14,10 +16,14 @@ Write a function to determine the knight's minimum initial health so that he is 
 
 For example, given the dungeon below, the initial health of the knight must be at least 7 if he follows the optimal path RIGHT-> RIGHT -> DOWN -> DOWN.
 
--2 (K)  -3  3
--5  -10 1
-10  30  -5 (P)
+-2 (K)  -3    3
+-5     -10    1
+10      30   -5 (P)
  
+ dp[][] init MAX_VALUE
+ dp[M+1][N] = 1
+ dp[M][N+1] = 1
+ dp[m][n] =  Math.max(1,Math.min(dp[m+1][n],dp[m][n+1]) - m[m][n]) 
 
 Note:
 

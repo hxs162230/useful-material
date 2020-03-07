@@ -1,6 +1,8 @@
 1130. Minimum Cost Tree From Leaf Values
 
-Given an array arr of positive integers, consider all binary trees such that:
+Given an array arr of positive integers, 
+
+consider all binary trees such that:
 
 Each node has either 0 or 2 children;
 The values of arr correspond to the values of each leaf in an in-order traversal of the tree.  
@@ -90,3 +92,28 @@ class Solution {
         }
 }
 
+
+**preference 
+class Solution {
+    public int mctFromLeafValues(int[] arr) {
+        int n = arr.length;
+        int[][] dp = new int[n][n];
+        int[][] max = new int[n][n];
+        for(int i=0;i<n;i++){
+            max[i][i] = arr[i];
+        }
+        for(int len= 2;len<=n;len++){
+            for(int i=0;i<=n-len;i++){
+                int j = i+len-1;
+                dp[i][j] = Integer.MAX_VALUE;
+                for(int k=i;k<j;k++){
+                    dp[i][j] = Math.min(dp[i][j],dp[i][k]+dp[k+1][j]+max[i][k]*max[k+1][j]);
+                }
+                for(int k=i;k<=j;k++){
+                    max[i][j] = Math.max(max[i][j],arr[k]);
+                }
+            }
+        }
+        return dp[0][n-1];
+    }
+}

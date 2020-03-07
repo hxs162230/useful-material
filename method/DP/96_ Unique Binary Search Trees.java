@@ -41,13 +41,14 @@ dp[3] =  dp[0] * dp[2]　　　(1为根的情况，则左子树一定不存在�
 class Solution {
     public int numTrees(int n) {
         int[] dp = new int[n+1];
-        dp[0]=1;
-        dp[1]=1;
-        int cnt=0;
-        for(int i=2;i<=n;i++){
+        dp[0] = 1;
+        //dp[1] = 1
+        //dp[2] = dp[0]*dp[1]+dp[1]*dp[0] = 2;
+        //dp[3] = dp[2]*dp[0]+dp[1]*dp[1]+dp[0]*dp[2]; 
+        for(int i=1;i<=n;i++){
             for(int j=0;j<i;j++){
-                dp[i]+=dp[j]*dp[i-j-1];
-            } 
+                dp[i] += dp[i-j-1]*dp[j];
+            }   
         }
         return dp[n];
     }

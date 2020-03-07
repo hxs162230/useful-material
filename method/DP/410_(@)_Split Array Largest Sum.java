@@ -1,6 +1,10 @@
 410. Split Array Largest Sum
 
-Given an array which consists of non-negative integers and an integer m, you can split the array into m non-empty continuous subarrays. Write an algorithm to minimize the largest sum among these m subarrays.
+Given an array which consists of non-negative integers and an integer m, 
+
+you can split the array into m non-empty continuous subarrays. 
+
+Write an algorithm to minimize the largest sum among these m subarrays.
 
 Note:
 If n is the length of array, assume the following constraints are satisfied:
@@ -28,7 +32,8 @@ where the largest sum among the two subarrays is only 18.
 难点就是在于推导状态转移方程了。来分析一下，如果前j个数字要分成i组，那么i的范围是什么，
 由于只有j个数字，如果每个数字都是单独的一组，那么最多有j组；如果将整个数组看为一个整体，
 那么最少有1组，所以i的范围是[1, j]，所以要遍历这中间所有的情况，假如中间任意一个位置k，
-dp[i-1][k] 表示数组中前k个数字分成 i-1 组所能得到的最小的各个子数组中最大值，
+
+ 表示数组中前k个数字分成 i-1 组所能得到的最小的各个子数组中最大值，
 而 sums[j]-sums[k] 就是后面的数字之和，取二者之间的较大值，然后和 dp[i][j] 原有值进行对比，
 更新 dp[i][j] 为二者之中的较小值，这样k在 [1, j] 的范围内扫过一遍，dp[i][j] 
 就能更新到最小值，最终返回 dp[m][n] 即可，博主认为这道题所用的思想应该是之前那道题 

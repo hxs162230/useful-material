@@ -1,18 +1,28 @@
 403. Frog Jump
 
-A frog is crossing a river. The river is divided into x units and at each 
+A frog is crossing a river. 
 
-unit there may or may not exist a stone. The frog can jump on a stone, 
+The river is divided into x units and at each 
+
+unit there may or may not exist a stone. 
+
+The frog can jump on a stone, 
 
 but it must not jump into the water.
 
 Given a list of stones' positions (in units) in sorted ascending order, 
 
-determine if the frog is able to cross the river by landing on the last stone. 
+determine if the frog is able to cross the river by landing on the 
 
-Initially, the frog is on the first stone and assume the first jump must be 1 unit.
+last stone. 
 
-If the frog's last jump was k units, then its next jump must be either k - 1, k, or k + 1 units. 
+Initially, the frog is on the first 
+
+stone and assume the first jump must be 1 unit.
+
+If the frog's last jump was k units, 
+
+then its next jump must be either k - 1, k, or k + 1 units. 
 
 Note that the frog can only jump in the forward direction.
 
@@ -39,6 +49,7 @@ k:        0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0 |
 // Sub-problem and state:
 let dp[i][j] denote at stone i, the frog can or cannot make jump of size j
 
+j===>i 傳遞下一步的走法
 
 class Solution {
     public boolean canCross(int[] stones) {
@@ -48,7 +59,7 @@ class Solution {
         }
         
         boolean[][] dp= new boolean[len][len+1];
-        dp[0][1]=true;
+        dp[0][1]=true;                                //設立初始值 在LOOP中找下一步
         for(int i=1;i<len;i++){
             for(int j=0;j<i;j++){
                 int diff = stones[i]-stones[j];

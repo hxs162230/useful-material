@@ -1,10 +1,20 @@
 134. Gas Station
 
-There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
+There are N gas stations along a circular route, 
 
-You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.
+where the amount of gas at station i is gas[i].
 
-Return the starting gas station's index if you can travel around the circuit once in the clockwise direction, otherwise return -1.
+You have a car with an unlimited gas tank and it 
+
+costs cost[i] of gas to travel from station i to its next station (i+1). 
+
+You begin the journey with an empty tank at one of the gas stations.
+
+Return the starting gas station's index 
+
+if you can travel around the circuit once in the clockwise direction, 
+
+otherwise return -1.
 
 Note:
 
@@ -42,6 +52,12 @@ Travel to station 0. Your tank = 4 - 3 + 2 = 3
 Travel to station 1. Your tank = 3 - 3 + 3 = 3
 You cannot travel back to station 2, as it requires 4 unit of gas but you only have 3.
 Therefore, you can't travel around the circuit once no matter where you start.
+
+
+如果当前的gas值大于cost值，就可以继续前进，
+此时到下一个站点，剩余的gas加上当前的gas再减去cost，看是否大于0，若大于0，则继续前进。
+当到达某一站点时，若这个值小于0了，则说明从起点到这个点中间的任何一个点都不能作为起点，
+则把起点设为下一个点，继续遍历。当遍历完整个环时，当前保存的起点即为所求。代码如下
 
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
