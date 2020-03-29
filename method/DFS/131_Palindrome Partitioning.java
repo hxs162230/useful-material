@@ -32,6 +32,7 @@ Output:
 a -> a -> b -> c -> bc -> ab -> abc -> aa -> b -> c -> bc -> aab -> aabc，中间当检测到aa时候，发现是回文串，
 那么对于剩下的bc当做一个新串来检测，于是有 b -> c -> bc，这样扫描了所有情况，即可得出最终答案，代码如下：
 
+O(N*2^N) N = s.length()
 class Solution {
     public List<List<String>> partition(String s) {
         List<List<String>> lol = new ArrayList<List<String>>();

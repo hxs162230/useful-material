@@ -28,7 +28,7 @@ class Solution {
                 lt.next = cur.next;
                 cur.next = cur.next.next;
                 lt = lt.next;
-                lt.next = null;
+                //lt.next = null;
             }
             else{
                 cur = cur.next;

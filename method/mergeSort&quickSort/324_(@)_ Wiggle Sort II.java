@@ -16,6 +16,13 @@ You may assume all input has valid answer.
 Follow Up:
 Can you do it in O(n) time and/or in-place with O(1) extra space?
 
+  m
+  |
+0 1 2
+
+  |  
+0 1 2 3
+
 
 class Solution {
     public void wiggleSort(int[] nums) {

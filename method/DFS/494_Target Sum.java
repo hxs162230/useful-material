@@ -25,9 +25,7 @@ Your output answer is guaranteed to be fitted in a 32-bit integer.
 
 class Solution {
     public int findTargetSumWays(int[] nums, int S) {
-        
         return dfs(nums,S,0);
-        
     }
     public int dfs(int[] nums,int S,int idx){
         int k=0;
@@ -40,5 +38,38 @@ class Solution {
         k+=dfs(nums,S-nums[idx],idx+1);
         k+=dfs(nums,S+nums[idx],idx+1);
         return k;
+    }
+}
+
+
+
+Time complexity : O(l*n). The memomemo array of size l∗n has been filled just once. Here, ll refers to the range of sumsum and nn refers to the size of numsnums array.
+
+Space complexity : O(n). The depth of recursion tree can go upto n.
+
+class Solution {
+    int[][] cache;
+    int len = 2001;
+    public int findTargetSumWays(int[] nums, int S) {
+        cache = new int[nums.length][len];
+        for(int[] c:cache) Arrays.fill(c,Integer.MIN_VALUE);
+        return dfs(nums,S,0,0);
+    }
+    public int dfs(int[] nums,int S,int idx,int sum){
+        int k=0;
+        if(idx==nums.length){
+            if(sum==S){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        if(cache[idx][sum+1000]!=Integer.MIN_VALUE) return cache[idx][sum+1000];
+        
+        k+=dfs(nums,S,idx+1,sum+nums[idx]);
+        k+=dfs(nums,S,idx+1,sum-nums[idx]);
+        return cache[idx][sum+1000] = k;
+        
     }
 }

@@ -1,0 +1,3 @@
+public enum SUIT{
+	CLUB, DIAMOND, HEART,SPADE
+}

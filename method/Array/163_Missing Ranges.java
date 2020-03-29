@@ -13,7 +13,7 @@ class Solution {
     public List<String> findMissingRanges(int[] nums, int lower, int upper) {
         List<String> lst = new ArrayList<>();
         for(int i=0;i<=nums.length;i++){
-            long start = i==0? lower : (long)nums[i-1]+1 ;
+            long start = i==0         ? lower : (long)nums[i-1]+1 ;
             long end = i==nums.length ? upper : (long)nums[i]-1;
             addString(lst,start,end);
         }

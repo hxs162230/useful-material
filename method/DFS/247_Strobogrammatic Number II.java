@@ -29,7 +29,7 @@ n = 4:   1001, 6009, 8008, 9006, 1111, 6119, 8118, 9116, 1691, 6699, 8698, 9696,
 因为0不能出现在两位数及多位数的开头，在中间递归的过程中，需要有在数字左右两边各加上0的那种情况，参见代码如下：  
 
 //postorder 
-
+botton up
 
 class Solution {
     public List<String> findStrobogrammatic(int n) {
