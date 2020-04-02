@@ -26,6 +26,8 @@ The input array may contain duplicates, so ascending order here means <=.
 比如数组[1,3,5,4,2]，第一个无序的地方是数字4，它移动到的正确位置是坐标2，此时start更新为2，
 然后下一个无序的地方是数字2，它的正确位置是坐标1，所以此时start应更新为1，这样每次用i - start + 1
 来更新结果res时才能得到正确的结果，参见代码如下：
+
+bubble sort O(n^2)
 class Solution {
     public int findUnsortedSubarray(int[] nums) {
         int j=0;
@@ -50,3 +52,30 @@ class Solution {
         nums[j]=tmp;
     }
 }
+
+I use the variables beg and end to keep track of minimum subarray A[beg...end] which must be sorted for the entire array A to be sorted. If end < beg < 0 at the end of the for loop, then the array is already fully sorted.
+
+greedy O(n)
+class Solution {
+    public int findUnsortedSubarray(int[] nums) {
+        int n = nums.length;
+        int st = -1;
+        int ed = -2;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            max = Math.max(max,nums[i]);
+            min = Math.min(min,nums[n-1-i]);
+            if(nums[i]<max) ed = i;  不斷CHECK如果沒更新max值 = > 不斷更新unsort_idx:ed
+            if(nums[n-1-i]>min) st = n-1-i;
+        }
+        return ed-st+1;
+    }
+}
+
+sort 條件 
+forward scan 遞增
+backward scan 遞減
+
+(應該要更新而沒更新)
+沒更新=>update st/ed

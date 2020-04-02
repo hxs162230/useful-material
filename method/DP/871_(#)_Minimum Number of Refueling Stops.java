@@ -1,4 +1,4 @@
-871. Minimum Number of Refueling Stops
+ 871. Minimum Number of Refueling Stops
 
 A car travels from a starting position to a destination 
 
@@ -102,7 +102,7 @@ class Solution {
         }
         for(int i=1;i<=n;i++){
             for(int j=1;j<=i;j++){
-                if(dp[i-1][j]>=stations[i-1][0])
+                if(dp[i-1][j]>=stations[i-1][0])  不取的條件
                     dp[i][j] = dp[i-1][j];
                 if(dp[i-1][j-1]>=stations[i-1][0])   可以到達這個點(i)的條件
                 dp[i][j] = Math.max(dp[i][j],dp[i-1][j-1]+stations[i-1][1]);

@@ -78,3 +78,55 @@ class Solution {
         return n==1?costs:-1;
     }
 }
+
+
+class Solution {
+    int[] pre;
+    int[] height;
+    int n;
+    public void union(int x,int y){
+        int root1 = find(x);
+        int root2 = find(y);
+        if(root1==root2) return;
+        
+        if(height[root1]>height[root2]){
+             pre[root2] = root1;
+        }
+        else if(height[root1]<height[root2]){
+             pre[root1] = root2;
+        }
+        else{
+             pre[root1] = root2;
+             ++height[root2];   
+        }
+        --n;
+    }
+    public int find(int x){
+        if(pre[x]==x) return x;
+        return pre[x] = find(pre[x]);
+    }
+    public int minimumCost(int N, int[][] connections) {
+        this.pre = new int[N+1];
+        this.height = new int[N+1];
+        this.n = N;
+        for(int i=0;i<=N;i++){
+            pre[i] = i;
+            height[i] = 0;
+        }
+        
+        Arrays.sort(connections, (a,b)->(a[2]-b[2]));
+        // for(int[] c:connections)
+        // System.out.println(c[2]);
+        int costs = 0;
+        for(int[] conn:connections){
+            int a = conn[0];
+            int b = conn[1];
+            if(find(a)!=find(b)){
+                costs+=conn[2];
+                union(a,b);
+            }
+        }
+        
+        return n==1?costs:-1;
+    }
+}

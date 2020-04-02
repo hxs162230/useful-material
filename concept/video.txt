@@ -16,3 +16,7 @@ https://www.youtube.com/watch?v=l-eFRuyl1b8
 
 Snake principle
 https://www.youtube.com/watch?v=37aT0mcnd5U
+
+
+DP
+https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns/439810
