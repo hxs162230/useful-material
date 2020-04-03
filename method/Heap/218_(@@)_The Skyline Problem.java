@@ -47,6 +47,7 @@ class Solution {
             lst.add(new int[]{b[1],b[2]});
         }
         Collections.sort(lst,new cmp());
+        // Collections.sort(lst,(a,b)->(a[0]==b[0]?a[1]-b[1]:a[0]-b[0]));
         
         TreeMap<Integer,Integer> map = new TreeMap<>();
         map.put(0,0);
