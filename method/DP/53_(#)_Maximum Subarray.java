@@ -56,7 +56,7 @@ class Solution {
     public int divide(int[] nums,int left,int right){
         if(left>=right) return nums[left];
         int mid = (left)+(right-left)/2;
-        int lm = divide(nums,left,mid);
+        int lm = divide(nums,left,mid-1);
         int rm = divide(nums,mid+1,right);
         int msum = nums[mid];
         int t = msum;

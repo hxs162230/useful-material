@@ -35,8 +35,10 @@ Your algorithm should run in O(n) time and uses constant extra space.
 最后再遍历一遍数组，如果对应位置上的数不正确则返回正确的数，参见代码如下：
 
 
+We visit each number once, and each number will be put in its right place at most once, so it is O(n) + O(n). Although there are two nesting of cyclic (for and while), but its time complexity is still O(n).
 
-o(NN)
+注意這題的RUN time是O(N)
+o(N)
 o(1)
 
 nums[nums[i]]<===>i+1

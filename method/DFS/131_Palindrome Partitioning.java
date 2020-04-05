@@ -62,3 +62,44 @@ class Solution {
         return true;
     }
 }
+
+
+sol2
+class Solution {
+    HashMap<String,List<List<String>>> cache;
+    public List<List<String>> partition(String s) {
+        
+        cache = new HashMap<>();
+        return dfs(s);
+    }
+    
+    public List<List<String>> dfs(String s){
+        if(cache.containsKey(s)) return cache.get(s);
+        List<List<String>> res = new ArrayList<>();
+        if(s.isEmpty()){
+            res.add(new ArrayList<>());
+            return res;
+        }
+        
+        for(int i=0;i<s.length();i++){
+            if(!isParlin(s.substring(0,i+1))) continue;
+            List<List<String>> right = dfs(s.substring(i+1));   
+            for(List<String> r:right){
+                List<String> sol = new ArrayList<>();
+                sol.add(s.substring(0,i+1));
+                sol.addAll(r);
+                res.add(sol);
+            }
+        }
+        cache.put(s,res);
+        return res;
+    }
+    public boolean isParlin(String s){
+        int left =0;
+        int right = s.length()-1;
+        while(left<right){
+            if(s.charAt(left++)!=s.charAt(right--)) return false;
+        }
+        return true;
+    }
+}
