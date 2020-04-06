@@ -41,3 +41,54 @@ class Solution {
         }
     }
 }
+
+manacher O(N)
+class Solution {
+    public String longestPalindrome(String s) {
+        char[] c = process(s);
+        int C=0;
+        int R=0;
+        int[] P = new int[c.length];
+        for(int i=1;i<c.length-1;i++){
+            int i_mirror = 2*C-i;
+            if(R>i){
+                P[i] = Math.min(R-i,P[i_mirror]);
+            }
+            else{
+                P[i] = 0;
+            }
+            while(c[i-1-P[i]]==c[i+1+P[i]]){
+                P[i]++;
+            }
+            if(i+P[i]>R){
+                R = i+P[i];
+                C = i;
+            }
+        }
+        int maxR = 0;
+        int center = 0;
+        for(int i=1;i<c.length-1;i++){
+            if(P[i]>maxR){
+                maxR = P[i];
+                center = i;
+            }
+        }
+        int start = (center-maxR)/2;
+        
+        return s.substring(start,start+maxR);
+    }
+    
+    public char[] process(String s){
+        char[] schar = new char[2*s.length()+1+2];
+        schar[0] = '^';
+        int idx=1;
+        for(int i=0;i<s.length();i++){
+            schar[idx++] = '#';
+            schar[idx++] = s.charAt(i);
+        }
+        schar[idx++] = '#';
+        schar[idx++] = '%';
+        return schar;
+    }
+    
+}

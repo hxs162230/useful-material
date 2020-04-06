@@ -39,7 +39,7 @@ Line 1 - 9 is valid because it passes through key 5, which had been selected in 
 preorder記錄從哪個長度開始到哪個長度結束
 當長度>=n return count;
 此count為計數器 返回值可直接賦予變數 count=dfs(...)
-
+The reason for count = DFS instead of += DFS is count is modified in inner recursion calls and gets returned, so that it can be passed into the next for loop.
 
 
 class Solution {
