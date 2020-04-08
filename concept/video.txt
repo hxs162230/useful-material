@@ -18,5 +18,9 @@ Snake principle
 https://www.youtube.com/watch?v=37aT0mcnd5U
 
 
+writeback writearound writethrough  (choosing cache)
+https://codeahoy.com/2017/08/11/caching-strategies-and-how-to-choose-the-right-one/
+
+
 DP
 https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns/439810
