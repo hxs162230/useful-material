@@ -57,3 +57,18 @@ class Solution {
         return isDec || isInc;
     }
 }
+
+
+class Solution {
+    public boolean isMonotonic(int[] A) {
+        int n = A.length;
+        boolean isInc = false;
+        boolean isDec = false;
+        for(int i=1;i<n;i++){
+            if(A[i]>A[i-1]) isInc = true;
+            if(A[i]<A[i-1]) isDec = true;
+            //if(!isDec&&!isInc) return false;
+        }
+        return !isDec || !isInc;
+    }
+}
