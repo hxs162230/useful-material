@@ -62,7 +62,7 @@ class Solution {
                     }      
                 }
                 else
-                break;
+                    break;
             }
         }
         return lst;

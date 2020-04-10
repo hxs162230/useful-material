@@ -38,7 +38,7 @@ Update (2015-02-10):
 The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button to reset your code definition.
 
 class Solution {
-    public boolean isNumber(String s) {
+    public boolean isNumber(String s){
         int i=0;
         while(i<s.length()&&(s.charAt(i)==' ')){
              i++;

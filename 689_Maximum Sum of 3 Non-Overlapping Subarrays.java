@@ -39,14 +39,14 @@ class Solution {
         
         int n = nums.length;
         int[] sum = new int[n+1];
-        int[] L = new int[n];
-        int[] R = new int[n];
+        int[] L = new int[n];   前n個  最大值的起點
+        int[] R = new int[n];   後n個  最大值的起點
         int[] res = new int[3];
         for(int i =1;i<=n;i++){
             sum[i] = sum[i-1]+nums[i-1];
         }
         int leftMax = sum[k]-sum[0];
-        L[k-1] = 0;
+        L[k-1] = 0; 
         for(int i=k;i<n;i++){
            if(sum[i+1]-sum[i-k+1]>leftMax){
                leftMax = sum[i+1]-sum[i-k+1];

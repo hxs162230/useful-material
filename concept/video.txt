@@ -18,6 +18,10 @@ Snake principle
 https://www.youtube.com/watch?v=37aT0mcnd5U
 
 
+https://www.acecodeinterview.com/short_term/google_system.html#google-file-system-gfs
+https://docs.google.com/document/d/1qxA2wps0IhVRWULulQ55W4SGPMu2AE5MkBB37h8Dr58/edit#
+
+
 writeback writearound writethrough  (choosing cache)
 https://codeahoy.com/2017/08/11/caching-strategies-and-how-to-choose-the-right-one/
 
