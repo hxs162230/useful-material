@@ -69,7 +69,7 @@ class LFUCache {
         if(map.containsKey(key)){
         	get(key);
         	map.put(key,value);
-        	return ; 2134
+        	return ; 
         }
         if(map.size()>=cap){
         	int rmKey = freq.get(min).iterator().next();

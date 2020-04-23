@@ -69,3 +69,58 @@ class Solution {
         return num;
     }
 }
+
+
+
+//   simple math : 25/26^6 = 80% miss
+//   filter-out the most occurence
+ 
+class Solution {
+    public void findSecretWord(String[] wordlist, Master master) {
+        //cnt occurence of number of character
+        //guess with highest guess score
+        
+        for(int i=0,x=0;i<10&&x<6;i++){
+            
+            int[][] cnt = new int[6][26];
+            for(String word:wordlist){
+                for(int l=0;l<6;l++){
+                    cnt[l][word.charAt(l)-'a']++;
+                }
+            }
+        
+        int best = 0;
+        String guess = wordlist[0];
+        
+        for(String word:wordlist){
+            int score = 0;
+            for(int l=0;l<6;l++){
+                score += cnt[l][word.charAt(l)-'a'];
+                if(score>best){
+                    best = score;
+                    guess = word; 
+                }
+            }
+        }
+        
+        List<String> lst = new ArrayList<>();
+        x = master.guess(guess);
+        for(String word:wordlist){
+            if(match(guess,word)==x){
+                lst.add(word);        
+            }
+        }
+        
+        wordlist = lst.toArray(new String[lst.size()]);
+     }    
+    }
+    
+    public int match(String s1,String s2){
+        int cnt = 0;
+        for(int i=0;i<s1.length();i++){
+            if(s1.charAt(i)==s2.charAt(i)) cnt++;
+        }
+        return cnt;
+    }
+    
+}

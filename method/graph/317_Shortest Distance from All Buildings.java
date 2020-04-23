@@ -49,6 +49,10 @@ There will be at least one building. If it is not possible to build such house a
 // 然后在遍历的过程中更新dist和sum的值，注意我们的dist算是个局部变量，每次都初始化为grid，
 // 真正的距离场累加在sum中，由于建筑的位置在grid中是1，所以dist中初始化也是1，
 // 累加到sum中就需要减1，我们用sum中的值来更新结果res的值，最后根据res的值看是否要返回-1，参见代码如下：
+
+bfs
+time O(m^2n^2)
+space O(mn)
 class Solution {
     public int shortestDistance(int[][] grid) {
         int m = grid.length;

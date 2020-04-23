@@ -45,13 +45,10 @@ Output: False
 class Solution {
     
     public boolean findTarget(TreeNode root, int k) {
-           
-    
         List<Integer> arr = new ArrayList<>();
         inorder(root,arr);
         int left=0;
         int right=arr.size()-1;
-        
         
         while(left<right){
             if(arr.get(left)+arr.get(right)<k){
@@ -63,25 +60,31 @@ class Solution {
             else{
                 return true;
             }
-            
-            
-            
-        }
-        
+        }        
         return false;
-        
-        
     }
     private void inorder(TreeNode root,List<Integer> arr){
-        
         if(root==null) return;
-        
         inorder(root.left,arr);
         arr.add(root.val);
         inorder(root.right,arr);
-        
-        
-        
-        
+    }
+}
+
+
+class Solution {
+    HashSet<Integer> set = new HashSet<>();
+    boolean find = false;
+    public boolean findTarget(TreeNode root, int k) {
+        dfs(root,k);
+        return find;
+    }
+    public void dfs(TreeNode root,int k){
+        if(find) return;
+        if(root==null) return;
+        dfs(root.left,k);
+        if(set.contains(k-root.val))  find = true;
+        set.add(root.val);
+        dfs(root.right,k);
     }
 }
