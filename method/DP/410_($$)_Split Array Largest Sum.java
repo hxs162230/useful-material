@@ -63,3 +63,41 @@ class Solution {
         return dp[m][n];
     }
 }
+
+
+similar to #1011
+time NlogN
+space 1
+class Solution {
+    public int splitArray(int[] nums, int m) {
+        long left = 0;
+        long right = 0;
+        for(int i:nums){
+            left = Math.max(left,i);
+            right+=i;
+        }
+        while(left<right){
+            long mid = left+(right-left)/2;
+            if(valid(mid,m,nums)){
+                right = mid;
+            }
+            else{
+                left = mid+1;
+            }
+        }
+        return (int)right;
+    }
+    public boolean valid(long cap,int limit,int[] nums){
+        int cnt = 1;
+        int sum = 0;
+        for(int i:nums){
+            if(sum+i>cap){
+                cnt++;
+                sum=0;
+                if(cnt>limit) return false;
+            }
+            sum+=i;
+        }
+        return true;
+    }
+}

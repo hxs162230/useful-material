@@ -81,7 +81,6 @@ public int strstr(String pat,String txt){
 
 }
 
-
 public int[] LPS(String pat){
     int len = pat.length();
     int[] lps = new int[len];

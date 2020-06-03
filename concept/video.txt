@@ -1,3 +1,6 @@
+OA resourceS
+https://www.1point3acres.com/bbs/thread-617245-1-1.html
+
 
 Map Reduce
 https://www.youtube.com/watch?v=Rz8JCS9TfOQ
@@ -28,3 +31,21 @@ https://codeahoy.com/2017/08/11/caching-strategies-and-how-to-choose-the-right-o
 
 DP
 https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns/439810
+
+project ref
+https://www.1point3acres.com/bbs/thread-522898-1-1.html
+https://www.udemy.com/course/build-angular-2-complete-e-comerce-app-java-spring-mysql/?LSNPUBID=Qy2%2FiTgoBIc&ranEAID=Qy2%2FiTgoBIc&ranMID=39197&ranSiteID=Qy2_iTgoBIc-KetUHcttGKmsXNKlfoXEoQ
+
+android
+https://android.jlelse.eu/android-interview-questions-cheat-sheet-96ea01c88def
+
+threads
+https://www.codejava.net/java-core/concurrency/java-readwritelock-and-reentrantreadwritelock-example
+
+big data process
+https://blog.csdn.net/v_july_v/article/details/7382693
+
+system design in Chinese
+https://wizardforcel.gitbooks.io/gainlo-interview-guide/content/sd22.html
+
+

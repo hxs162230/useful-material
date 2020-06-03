@@ -35,7 +35,7 @@ class Solution {
             int val = Math.abs(nums[i])-1;
             if(nums[val]<0)
                 lst.add(val+1);
-                nums[val]=-nums[val];
+            nums[val]=-nums[val];
         }
         return lst;
     }

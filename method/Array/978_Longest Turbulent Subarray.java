@@ -54,7 +54,7 @@ class Solution {
             }
             else if(A[i]<A[i-1]){
                 dec = inc+1;
-                inc = 1;;
+                inc = 1;
             }
             else{
                 inc = 1;

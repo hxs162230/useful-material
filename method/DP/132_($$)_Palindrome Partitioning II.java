@@ -1,3 +1,4 @@
+
 132. Palindrome Partitioning II
 Hard
 
@@ -36,5 +37,37 @@ class Solution {
             }
         }
         return cut[n-1];
+    }
+}
+
+
+
+class Solution {
+    HashMap<String,Integer> cache;
+    public int minCut(String s) {
+        cache = new HashMap<>();
+        int minOfpalin = dfs(s);
+        return minOfpalin-1;
+    }
+    public int dfs(String s){
+        if(s.isEmpty()) return 0;
+        if(cache.containsKey(s)) return cache.get(s);
+        int ans = s.length();
+        for(int i=1;i<=s.length();i++){
+            String cur = s.substring(0,i);
+            if(isPalin(cur)){
+                ans = Math.min(ans,1+dfs(s.substring(i)));
+            }
+        }
+        cache.put(s,ans);
+        return ans;
+    }
+    public boolean isPalin(String s){
+        int left = 0;
+        int right = s.length()-1;
+        while(left<=right){
+            if(s.charAt(left++)!=s.charAt(right--)) return false;
+        }
+        return true;
     }
 }

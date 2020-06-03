@@ -43,22 +43,25 @@ class SummaryRanges {
     public SummaryRanges() {
          map = new TreeMap<>();
     }
-    
     public void addNum(int val) {
         if(map.containsKey(val)) return;
         Integer upper = map.higherKey(val);
         Integer lower = map.lowerKey(val);
+        //----X---- 兩邊接起來 刪掉右邊區間
         if(upper!=null&&lower!=null&&map.get(lower).end+1==val&&val+1==upper){
            map.get(lower).end = map.get(upper).end;
            map.remove(upper);
         }
+        //若兩區間不是差一個值   更新左邊區間的右端
         else if(lower!=null&&map.get(lower).end+1>=val){
             map.get(lower).end = Math.max(val,map.get(lower).end);
         }
+        //找不到左區間   更新右區間
         else if(upper!=null&&val+1==upper){
             map.put(val,new Interval(val,map.get(upper).end));
             map.remove(upper);
         }
+        //no hit insert
         else{
             map.put(val,new Interval(val,val));
         }

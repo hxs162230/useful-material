@@ -87,3 +87,48 @@ class Solution {
         }
     }
 }
+
+
+
+class Solution {
+    public void gameOfLife(int[][] board) {
+        int m = board.length;
+        if(m==0) return;
+        int n = board[0].length;
+        /*
+        00    0
+        11    1
+        10    2
+        01    3
+        */
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                int lives = calculate(board,i,j);
+                if(board[i][j]==0&&lives==3) board[i][j] = 3;
+                if(board[i][j]==1&&(lives<2||lives>3)) board[i][j] = 2;
+            }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                board[i][j]%=2;
+            }
+        }
+        
+        
+    }
+    public int calculate(int[][] b,int ox,int oy){
+        int m = b.length;
+        int n = b[0].length;
+        int lives = 0;
+        for(int i=-1;i<=1;i++){
+            for(int j=-1;j<=1;j++){
+                if(i==0&&j==0) continue;
+                int x = ox+i;
+                int y = oy+j;
+                if(x<0||y<0||x>=m||y>=n) continue;
+                lives+=(b[x][y]==1||b[x][y]==2)?1:0;
+            }
+        }
+        return lives;
+    }
+}

@@ -27,19 +27,18 @@ Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 
 class Solution {
     public int rob(int[] nums) {
-        if(nums.length<=1) return (nums.length==0? 0:nums[0]);
-    
-        return Math.max(dpCal(nums,0,nums.length-2),dpCal(nums,1,nums.length-1));
+        if(nums.length==0) return 0;
+        if(nums.length==1) return nums[0];
+        if(nums.length==2) return Math.max(nums[0],nums[1]);
+        return Math.max(robber(1,nums.length-1,nums),robber(0,nums.length-2,nums));
     }
-    public int dpCal(int[] nums,int i,int j){
-           if(j<=i) return nums[j];
-           int[] dp=new int[nums.length];
-           dp[i] = nums[i];
-           dp[i+1]=Math.max(nums[i],nums[i+1]); 
-           
-        for(int k=i+2;k<=j;k++){
-            dp[k]=Math.max(dp[k-2]+nums[k],dp[k-1]);
+    public int robber(int st,int ed,int[] nums){
+        int[] dp = new int[nums.length];
+        dp[st] = nums[st];
+        dp[st+1] = Math.max(nums[st],nums[st+1]);
+        for(int i=st+2;i<=ed;i++){
+            dp[i] = Math.max(dp[i-2]+nums[i],dp[i-1]);
         }
-        return dp[j];
+        return dp[ed];
     }
 }

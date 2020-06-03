@@ -72,9 +72,9 @@ class Solution {
         grid[i][j] = 0;
         int ans = 0;
         for(int[] dir:dirs){
-            ans = Math.max(ans,dfs(grid,i+dir[0],j+dir[1]));
+            ans = Math.max(ans,k+dfs(grid,i+dir[0],j+dir[1]));
         }
-        ans+=k;
+        
         grid[i][j] = k;
         return ans;
     }

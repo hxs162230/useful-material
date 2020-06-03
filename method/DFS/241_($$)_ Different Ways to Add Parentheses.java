@@ -26,6 +26,8 @@ Explanation:
 (2*((3-4)*5)) = -10 
 (((2*3)-4)*5) = 10
 
+Time catalan number if no cache
+O(N^3) if cache
 
 class Solution {
     HashMap<String,List<Integer>> cache = new HashMap<>();

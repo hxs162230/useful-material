@@ -68,7 +68,6 @@ sol2
 class Solution {
     HashMap<String,List<List<String>>> cache;
     public List<List<String>> partition(String s) {
-        
         cache = new HashMap<>();
         return dfs(s);
     }

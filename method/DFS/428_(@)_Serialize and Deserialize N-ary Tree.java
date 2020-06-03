@@ -86,7 +86,6 @@ class Codec {
         int val = Integer.parseInt(str[idx[0]++]);
         int numOfchild= Integer.parseInt(str[idx[0]]);
         Node node=new Node(val,new ArrayList<Node>());
-    
         for(int i=0;i<numOfchild;i++){
             node.children.add(de(str,idx));
         }

@@ -92,8 +92,8 @@ class Solution {
             for(String nextUrl : htmlParser.getUrls(curUrl)){
                 if(seen.contains(nextUrl)) continue;
                 if(nextUrl.contains(hostname)){
-                seen.add(nextUrl);
-                q.add(nextUrl);
+                  seen.add(nextUrl);
+                  q.add(nextUrl);
                 }
             }
         }

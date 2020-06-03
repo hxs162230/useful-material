@@ -77,12 +77,10 @@ class Solution {
     public Node dfs(int[][] grid,int i,int j,int len){
         //if(len<=0) return null;
         for(int x=i;x<i+len;x++){
-            for(int y=j;y<j+len;y++){
+            for(int j;y<j+len;y++){
                 if(grid[i][j]!=grid[x][y])
-                    return new Node(true,false,dfs(grid,i,j,len/2),dfs(grid,i,j+len/2,len/2),dfs(grid,i+len/2,j,len/2),dfs(grid,i+len/2,j+len/2,len/2));
-                
-                
-                
+                    return new Node(true,false,dfs(grid,i,j,len/2),dfs(grid,i,j+len/2,len/2),
+                        dfs(grid,i+len/2,j,len/2),dfs(grid,i+len/2,j+len/2,len/2));
             }
         }
         return new Node(grid[i][j]==1,true,null,null,null,null);

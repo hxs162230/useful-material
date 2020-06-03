@@ -64,7 +64,12 @@ class cmp implements Comparator<String>{
         return (one?(two?0:1):-1);
     }
 }
-
+ D    C
+true false =>  1
+ C    D
+false true => -1 
+ D    D    
+true  true =>  0
 // class cmp implements Comparator<String>{
 //     public int compare(String a,String b){
 //         String[] fst = a.split(" ",2);

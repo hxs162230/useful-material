@@ -76,3 +76,35 @@ class Solution {
         nums[j] = tmp;
     }
 }
+
+
+quickSort for 2 pivot
+
+
+ = > quickSort(nums,0,nums.length-1);
+
+public void quickSort(int[] nums,int left,int right){
+    if(left>=right) return;
+    int[] pi = partition(nums,left,right);
+    quickSort(nums,left,left,pi[0]-1);
+    quickSort(nums,pi[0]+1,pi[1]-1);
+    quickSort(nums,pi[1]+1,right);
+}
+public int[] partition(int[] nums,int left,int right){
+    if(nums[left]>nums[right]) swap(nums,left,right);
+    int pivot1 = nums[left];
+    int pivot2 = nums[right];
+    int low = left+1;
+    int high = right-1;
+    for(int i=left+1;i<=high;i++){
+        if(nums[i]<pivot1){
+            swap(nums,low++,i);
+        }
+        else if(nums[i]>=pivot2){
+            swap(nums,high--,i--);
+        }
+    }
+    swap(nums,left,--low);
+    swap(nums,right,++high);
+    return new int[]{low,high};
+}

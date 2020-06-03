@@ -70,7 +70,21 @@ class Solution {
     }
 }
 
-
+class Solution {
+    public int numDistinct(String s, String t) {
+        int m = s.length();
+        int n = t.length();
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        for(int i=1;i<=m;i++){
+            for(int j=n;j>0;j--){
+                if(s.charAt(i-1)==t.charAt(j-1))
+                    dp[j] = dp[j]+dp[j-1];
+            }
+        }
+        return dp[n];
+    }
+}
 
 // Let W(i, j) stand for the number of subsequences of S(0, i) equals to T(0, j). If S.charAt(i) == T.charAt(j), W(i, j) = W(i-1, j-1) + W(i-1,j); Otherwise, W(i, j) = W(i-1,j).
 

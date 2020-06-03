@@ -66,8 +66,6 @@ class Solution {
                 char c = s.charAt(i);
                 if(!Character.isDigit(c)&&c!='a'&&c!='A'&&c!='b'&&c!='B'&&c!='c'&&c!='C'&&c!='d'&&c!='D'&&c!='e'&&c!='E'&&c!='f'&&c!='F') return false;
             }
-            
-
         }
         return true;
     }

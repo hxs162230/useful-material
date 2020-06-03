@@ -34,21 +34,19 @@ S:O(1)
 
 class Solution {
     public int jump(int[] nums) {
-        int len=nums.length;
-        int cur=0;
-        int next=0;
-        int c=0;
-        int i=0;
-        while(next<len-1){
-            cur=next;
+        int  n = nums.length;
+        int next =0;
+        int cur =0;
+        int step =0;
+        int i =0;
+        while(next<n-1){
             for(;i<=cur;i++){
-                next=Math.max(next,i+nums[i]);
+                next = Math.max(next,i+nums[i]);
             }
-            if(next==cur) return -1;
-            else
-                c++;
+            if(cur==next) return -1;
+            cur=next;
+            step++;
         }
-        return c;
-        
+        return step;
     }
 }

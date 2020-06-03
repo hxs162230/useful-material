@@ -54,6 +54,23 @@ class Solution {
 
 class Solution {
     public boolean isSubsequence(String s, String t) {
+        int m = t.length();
+        int n = s.length();
+        boolean[] dp = new boolean[n+1];
+        dp[0] = true;
+        for(int i=1;i<=m;i++){
+            for(int j=n;j>0;j--){
+                if(s.charAt(j-1)==t.charAt(i-1))
+                    dp[j] = dp[j]||dp[j-1];
+            }
+        } 
+        return dp[n];
+    }
+}
+
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
         if(s.length()==0) return true;
         int slen = s.length();
         int tlen = t.length();

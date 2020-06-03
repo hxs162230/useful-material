@@ -38,23 +38,23 @@ The given board size is always 9x9.
 [8][8] ==> 8;
  
 
-
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        int x = board.length;
-        int y = board[0].length;
-        boolean[][] rowFlag = new boolean[x][9];
-        boolean[][] colFlag = new boolean[9][y];
-        boolean[][] cellFlag = new boolean[9][9];
-        for(int i=0;i<x;i++){
-            for(int j=0;j<y;j++){
-                if(board[i][j]<='9'&&board[i][j]>='0'){
-                int c =board[i][j]-'1';
-                if(rowFlag[i][c]==true || colFlag[c][j]==true || cellFlag[3*(i/3)+j/3][c] == true)
-                    return false;
-                rowFlag[i][c] = true;  
-                colFlag[c][j] = true; 
-                cellFlag[3*(i/3)+j/3][c] = true;
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] col = new boolean[9][n];
+        boolean[][] row = new boolean[9][m];
+        boolean[][] cell = new boolean[9][9];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(board[i][j]>='1'&&board[i][j]<='9'){    
+                    int c = board[i][j]-'1';
+                    if(col[c][j]||row[c][i]||cell[c][3*(i/3)+j/3]){
+                        return false;
+                    }
+                    col[c][j] = true;
+                    row[c][i] = true;
+                    cell[c][3*(i/3)+j/3] = true;
                 }
             }
         }

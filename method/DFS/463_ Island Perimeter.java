@@ -47,7 +47,6 @@ class Solution {
         if(grid[i][j]!=1) return 0;
         int ans=0;
         grid[i][j]=-1;
-        
         ans+=dfs(grid,i-1,j);
         ans+=dfs(grid,i+1,j);
         ans+=dfs(grid,i,j-1);

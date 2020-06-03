@@ -170,8 +170,10 @@ Thread Leakage :Thread Leakage occurs if a thread is removed from the pool to ex
 Resource Thrashing :If the thread pool size is very large then time is wasted in context switching between threads. Having more threads than the optimal number may cause starvation problem leading to resource thrashing as explained.
 Important Points
 
-Don’t queue tasks that concurrently wait for results from other tasks. This can lead to a situation of deadlock as described above.
-Be careful while using threads for a long lived operation. It might result in the thread waiting forever and would eventually lead to resource leakage.
+Don’t queue tasks that concurrently wait for results from other tasks. 
+This can lead to a situation of deadlock as described above.
+Be careful while using threads for a long lived operation. 
+It might result in the thread waiting forever and would eventually lead to resource leakage.
 The Thread Pool has to be ended explicitly at the end. If this is not done, then the program goes on executing and never ends. Call shutdown() on the pool to end the executor. If you try to send another task to the executor after shutdown, it will throw a RejectedExecutionException.
 One needs to understand the tasks to effectively tune the thread pool. If the tasks are very contrasting then it makes sense to use different thread pools for different types of tasks so as to tune them properly.
 Tuning Thread Pool

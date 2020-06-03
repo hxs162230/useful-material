@@ -88,6 +88,7 @@ class Solution {
                 sb.append(words[k]);
                 if(space>0){    
                     if(j==words.length){
+                        //j-1-k==剩餘字數
                         if(j-1-k==0) tmp=space; 
                         else tmp=1;
                     }
