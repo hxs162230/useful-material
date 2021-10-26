@@ -45,7 +45,7 @@ class Solution {
         for(int i=1;i<w.length;i++){
             sum[i]=sum[i-1]+w[i];
         }
-        //stem.out.print(sum[sum.length-1]);
+        //System.out.print(sum[sum.length-1]);
     }
     
     public int pickIndex() {
@@ -54,6 +54,7 @@ class Solution {
         int x =rand.nextInt(sum[sum.length-1]);
         while(left<right){
             int mid = left+(right-left)/2;
+            //找第一個大於這個值的就是idx
             if(sum[mid]>x) 
                 right = mid;
             else

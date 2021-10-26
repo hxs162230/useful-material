@@ -46,6 +46,8 @@ N*M*M => words finite Character <=100
 N*10000=>N   
 N+NlogN = NlogN
 
+
+
 class Solution {
     public int longestStrChain(String[] words) {
         Arrays.sort(words,new cmp());
@@ -55,9 +57,13 @@ class Solution {
             int max=0;
             for(int i=0;i<word.length();i++){
                 String s = word.substring(0,i)+word.substring(i+1);
+                //內層不能put 此處為與#300不同點
+                //因為掃描的方式不是 j<i j左到右, 而是word中的substring
                 max = Math.max(max,dp.getOrDefault(s,0)+1); 
             }
+            //找出最長的  再更新
             dp.put(word,max);
+            
             globalmax = Math.max(globalmax,max);
         }
         return globalmax;

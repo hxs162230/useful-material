@@ -83,3 +83,28 @@ class Solution {
         return res;
     }
 }
+
+
+class Solution {
+    public int minTaps(int n, int[] ranges) {
+        int[][] arr = new int[n+1][2];
+        for(int i=0;i<ranges.length;i++){
+            arr[i][0] = i-ranges[i];
+            arr[i][1] = i+ranges[i];
+        }
+        Arrays.sort(arr,(a,b)->a[0]-b[0]);
+        int step = 0;
+        int cur = 0;
+        int next = 0;
+        int i=0;
+        while(cur<n){
+            for(;i<=n&&arr[i][0]<=cur;i++){
+                next = Math.max(next,arr[i][1]);
+            }
+            if(cur==next) return -1;
+            cur = next;
+            step++;
+        }
+        return step;
+    }
+}

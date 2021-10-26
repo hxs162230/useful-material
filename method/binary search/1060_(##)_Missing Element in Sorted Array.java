@@ -67,3 +67,27 @@ class Solution {
         return nums[left]+k;
     }
 }
+
+
+
+class Solution {
+    public int missingElement(int[] nums, int k) {
+        int n = nums.length;
+        int slots = nums[n-1]-nums[0]+1-n;
+        if(k>slots) return nums[n-1]+k-slots;
+        int left = 0;
+        int right = n;
+        while(right-left>1){
+            int mid = left+(right-left)/2;
+            int sslots = nums[mid]-nums[left]-(mid-left);
+            if(k>sslots){
+                left = mid;
+                k-=sslots;
+            }
+            else{
+                right = mid;
+            }
+        }
+        return nums[left]+k;
+    }
+}

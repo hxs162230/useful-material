@@ -44,41 +44,43 @@ M[i][i] = 1 for all students.
 If M[i][j] = 1, then M[j][i] = 1.
 
 class Solution {
-    int[] pre;
     public int findCircleNum(int[][] M) {
-        int N = M.length;
-        pre = new int[N];
-        for(int i=0;i<N;i++){
-            pre[i]=i;
-        }
-        
-        for(int i=0;i<N;i++){
-            for(int j=i+1;j<N;j++){
+        int m = M.length;
+        int size = m;
+        int[] pre = new int[m];
+        int[] h = new int[m];
+        for(int i=0;i<m;i++) pre[i] = i;
+        for(int i=0;i<m;i++){
+            for(int j=i+1;j<m;j++){
                 if(M[i][j]==1){
-                    int x_pre = findRoot(i);
-                    int y_pre = findRoot(j);
-                    if(x_pre!=y_pre){
-                    union(x_pre,y_pre);
+                    int ri = findRoot(pre,i);
+                    int rj = findRoot(pre,j);
+                    if(ri!=rj){
+                        unionRoot(pre,h,ri,rj);
+                        size--;
                     }
                 }
             }
         }
-        HashSet<Integer> seen = new HashSet<>();
-        for(int i=0;i<N;i++){
-            if(!seen.contains(findRoot(i))){
-                seen.add(findRoot(i));
-            }
+        
+        return size;
+    }
+    public int findRoot(int[] pre,int i){
+        if(pre[i]==i) return i;
+        return pre[i] = findRoot(pre,pre[i]);
+    }
+    public void unionRoot(int[] pre,int[] h,int i,int j){
+        if(i==j) return;
+        if(h[i]>h[j]){
+            pre[j] = i;
         }
-
-        return seen.size();
+        else if(h[i]<h[j]){
+            pre[i] = j;
+        }
+        else{
+            pre[j] = i;
+            h[i]++;
+        }
+        
     }
-    public int findRoot(int x){
-        if(pre[x]==x) return x;
-        return pre[x]=findRoot(pre[x]);
-    }
-    public void union(int x,int y){
-        pre[y]=x;
-        pre[x]=x;
-    }
-    
 }

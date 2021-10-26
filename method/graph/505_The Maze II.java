@@ -136,3 +136,44 @@ class cmp implements Comparator<int[]>{
         return a[0]-b[0];
     }
 }
+
+單終點 單源 適合用minheap => O(E+VlogV);
+1.early termination;
+2.faster convergence relaxation;
+class Solution {
+    public int shortestDistance(int[][] maze, int[] start, int[] destination) {
+        int m = maze.length;
+        int n = maze[0].length;
+        int[][] dist = new int[m][n];
+        for(int[] d:dist) Arrays.fill(d,Integer.MAX_VALUE);
+        dist[start[0]][start[1]] = 0;
+        int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->(a[0]-b[0]));
+        pq.add(new int[]{0,start[0],start[1]});
+        while(!pq.isEmpty()){
+            int[] t = pq.poll();
+            int curD = t[0];
+            int cx = t[1];
+            int cy = t[2];
+            if(cx==destination[0]&&cy==destination[1]) return curD;
+            for(int[] dir:dirs){
+                int nx = cx;
+                int ny = cy;
+                int distance = 0;
+                while(nx>=0&&nx<m&&ny>=0&&ny<n&&maze[nx][ny]==0){
+                    nx+=dir[0];
+                    ny+=dir[1];
+                    distance++;
+                }
+                nx-=dir[0];
+                ny-=dir[1];
+                distance--;
+                if(curD+distance<dist[nx][ny]){
+                    pq.add(new int[]{curD+distance,nx,ny});
+                    dist[nx][ny] = curD+distance;
+                }
+            }
+        }
+        return -1;
+    }
+}

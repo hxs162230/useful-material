@@ -112,3 +112,95 @@ class Solution {
         return res==Integer.MAX_VALUE?-1:res;
     }
 }
+
+
+
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+        int[][] graph = new int[101][101];
+        for(int[] d:graph) Arrays.fill(d,-1);
+        for(int[] t:times){
+            graph[t[0]][t[1]] = t[2];        
+        }
+        int[] dist = new int[N+1];
+        Arrays.fill(dist,Integer.MAX_VALUE);
+        dist[K] = 0;
+        PriorityQueue<int[]> q = new PriorityQueue<>((a,b)->(a[0]-b[0]));
+        q.add(new int[]{0,K});
+        while(!q.isEmpty()){
+            int[] t = q.poll();
+            int curNode = t[1];
+            int curD = dist[curNode];
+            for(int i=1;i<=100;i++){
+                if(i!=curNode&&graph[curNode][i]!=-1){
+                    if(curD+graph[curNode][i]<dist[i]){
+                        q.add(new int[]{curD+graph[curNode][i],i});
+                        dist[i] = curD + graph[curNode][i];
+                    }
+                }
+            }
+        }
+        
+        int maxLen = 0;
+        for(int i=1;i<=N;i++){
+            maxLen=Math.max(dist[i],maxLen);
+        }
+        return maxLen==Integer.MAX_VALUE?-1:maxLen;
+    }
+}
+
+// Bellman-Ford  O(NN)   單點最短
+// Floyd-Warshall O(NNN) 多點最短
+// FW為BF的extention 
+// 
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+        int[] dist = new int[N];
+        Arrays.fill(dist,100*101);
+        dist[K-1] = 0;
+        for(int i=1;i<N;i++){
+            for(int[] time:times){
+                int st = time[0]-1;
+                int ed = time[1]-1;
+                int wd = time[2];
+                dist[ed] = Math.min(dist[ed],dist[st]+wd);
+            }
+        }
+        int max = 0;
+        for(int d:dist){
+            max = Math.max(d,max);
+        }
+        return max==100*101?-1:max;
+    }
+}
+
+
+
+class Solution {
+    public int networkDelayTime(int[][] times, int N, int K) {
+        int[][] dist = new int[N][N];
+        int maxdist = 100*101;
+        for(int[] d:dist) Arrays.fill(d,100*101);
+        for(int i=0;i<N;i++) dist[i][i] = 0;
+        for(int[] time:times){
+            int st = time[0]-1;
+            int ed = time[1]-1;
+            int wd = time[2];
+            dist[st][ed] = wd;
+        }
+        for(int k=0;k<N;k++){
+            for(int i=0;i<N;i++){
+                for(int j=0;j<N;j++){
+                    dist[i][j] = Math.min(dist[i][j],dist[i][k]+dist[k][j]);
+                }
+            }
+        }
+        
+        
+        int max = 0;
+        for(int d:dist[K-1]){
+            max = Math.max(max,d);
+        }
+        return max==maxdist?-1:max;
+    }
+}

@@ -132,3 +132,76 @@ class cmp implements Comparator<Map.Entry<String,Integer>>{
         return (a.getValue()==b.getValue()?b.getKey().compareTo(a.getKey()):a.getValue()-b.getValue());
     }
 }
+
+
+
+class AutocompleteSystem {
+    Trie root;
+    Trie cursor;
+    boolean end = false;
+    String prefix;
+    public AutocompleteSystem(String[] sentences, int[] times) {
+        int len = times.length;
+        this.root = new Trie();
+        this.cursor = root;
+        this.prefix = "";
+        for(int i=0;i<len;i++){
+            addword(root,sentences[i],times[i]);
+        }
+    }
+    public void addword(Trie cur,String s,int times){
+        for(int i=0;i<s.length();i++){
+            if(cur.child[s.charAt(i)]==null){
+                cur.child[s.charAt(i)] = new Trie();
+            }
+            cur = cur.child[s.charAt(i)];
+            cur.cnt.put(s,cur.cnt.getOrDefault(s,0)+times);
+        }
+    }
+    
+    public List<String> input(char c) {
+        List<String> lst = new LinkedList<>();
+        if(c=='#'){
+            addword(root,prefix,1);
+            prefix="";
+            cursor = root;
+            end=false;
+            return lst;
+        }
+        Trie cur = cursor;
+        prefix+=c;
+        if(end||cur.child[c]==null){
+            cursor = root;
+            end=true;
+            return lst;
+        }
+        cur = cur.child[c];
+        cursor = cur;
+
+        
+        PriorityQueue<Map.Entry<String,Integer>> pq = new PriorityQueue<>((a,b)->(a.getValue()!=b.getValue()?a.getValue()-b.getValue():b.getKey().compareTo(a.getKey())));
+        for(Map.Entry<String,Integer> entry:cur.cnt.entrySet()){
+            if(pq.size()<3){
+                pq.add(entry);
+            }
+            else{
+                pq.add(entry);
+                pq.poll();
+            }
+        }
+        
+        while(!pq.isEmpty()){
+            lst.add(0,pq.poll().getKey());
+        }
+        return lst;
+    }
+    class Trie{
+        Trie[] child;
+        HashMap<String,Integer> cnt;
+        public Trie(){
+            this.cnt = new HashMap<>();
+            this.child = new Trie[256];
+        }
+    }
+    
+}

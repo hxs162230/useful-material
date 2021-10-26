@@ -95,3 +95,65 @@ class Solution {
         }
     }
 }
+
+class Solution {
+    int[] cnt;
+    public List<Integer> countSmaller(int[] nums) {
+        int len = nums.length;
+        this.cnt = new int[len];
+        int[] idx = new int[len];
+        List<Integer> lst = new ArrayList<>();
+        
+        for(int i=0;i<len;i++) idx[i] = i;
+        mergeSort(idx,nums,0,len-1);
+        
+        for(int i=0;i<cnt.length;i++) lst.add(cnt[i]);
+        return lst;
+    }
+    public void mergeSort(int[] idx,int[] nums,int left,int right){
+        if(left>=right) return;
+        int mid = left+(right-left)/2;
+        
+        mergeSort(idx,nums,left,mid);
+        mergeSort(idx,nums,mid+1,right);
+        
+        merge(idx,nums,left,mid,right);
+    }
+    public void merge(int[] idx,int[] nums,int left,int mid,int right){
+        
+        int[] new_idx = new int[right-left+1];
+        for(int i=left;i<=right;i++){
+            new_idx[i-left] = idx[i];
+        }
+        
+        int m = mid-left;
+        int n = right-left;
+        
+        int l = 0;
+        int r = mid-left+1;
+        
+        int k = left;
+        int count = 0;
+        
+        while(l<=m&&r<=n){
+            if(nums[new_idx[l]]>nums[new_idx[r]]){
+                count++;
+                idx[k++] = new_idx[r++];
+                
+            }
+            else{
+                cnt[new_idx[l]]+=count;
+                idx[k++] = new_idx[l++];
+               
+            }
+        }
+        
+        while(l<=m){
+            cnt[new_idx[l]]+=count;
+            idx[k++] = new_idx[l++];
+        }
+        while(r<=n){
+            idx[k++] = new_idx[r++];
+        }
+    }
+}

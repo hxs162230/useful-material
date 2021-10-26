@@ -1,0 +1,556 @@
+    Problem Year    Position    Platform    Location
+    Prime Air Route 2020    Experienced HackerRank  USA
+ public List<int[]> getOptimizedUtilize(int maxTravelDist, List<int[]> forwardRoutes, List<int[]> returnRoutes) {
+        // Sort both lists in a descending order by route distance
+        Collections.sort(forwardRoutes, (a,b) -> (b[1] - a[1]));
+        Collections.sort(returnRoutes, (a,b) -> (b[1] - a[1]));
+                         
+        // PQ to save all possible routes as int[3]{f.id, r.id, dist} in a descending order
+        Queue<int[]> possibleRoutes = new PriorityQueue<int[]>(
+            Math.max(forwardRoutes.size(), returnRoutes.size()),
+            (a,b) -> (b[2] - a[2]));
+                
+        for(int[] forwardRoute: forwardRoutes) {
+            if (forwardRoute[1] < maxTravelDist) {
+                int retIndex = find(returnRoutes, maxTravelDist - forwardRoute[1]);
+                if (retIndex > 0) {
+                    int dist = forwardRoute[1] + returnRoutes.get(retIndex)[1];
+                    possibleRoutes.offer(new int[]{forwardRoute[0], returnRoutes.get(retIndex)[0], dist});
+                }
+            }
+        }
+                         
+        List<int[]> bestRoute = new ArrayList<int[]>();
+        if (!possibleRoutes.isEmpty()) {
+            int max = possibleRoutes.peek()[2];
+            while(!possibleRoutes.isEmpty() && possibleRoutes.peek()[2] == max) {
+                int[] route = possibleRoutes.poll();
+                bestRoute.add(new int[]{route[0], route[1]});
+            }
+        }
+    }
+
+    reverse sorted route list find the index of the route largest possible distance where distance <= v 
+    private int find(List<int[]> routes, int v) {
+        int s = 0;
+        int e = routes.size()-1;
+        int last = -1;
+        while( s <= e ) {
+            int mid = (s+e) / 2;
+            int[] midRoute = routes.get(mid);
+            if (midRoute[1] == v) {
+                return mid;
+            }
+            if (v < midRoute[1]) {
+                s = mid + 1;
+            } else {
+                // the last index where route is smaller than v
+                last = mid;
+                e = e - 1;
+            }                       
+        }
+        return last;
+    } 
+
+V    Amazon Fulfillment Builder  2020    Experienced HackerRank  USA
+int findTime(vector<int>parts)
+{
+    int totaltime = 0;
+    priorityqueue<int,vector<int>,greater<int>>pq;
+    for(int i=0;i<parts.size();i++) {
+        pq.push(parts[i]);
+    }
+    while(pq.size()>1)
+    {
+        int p1 = pq.top();
+        pq.pop();
+        int p2 = pq.top();
+        pq.pop();
+        int time = p1+p2;
+        pq.push(time);
+        totaltime += time;
+    }
+    return totaltime;
+}
+
+
+V    Amazon Fresh Promotion  2020    Experienced SHL/HackerRank  USA
+
+    private static int freshPromotion(String[][] codeList, String[] shoppingCart) {
+//        Start at 0 index for both the code list and shopping cart.
+        int cartIdx = 0, codeIdx = 0;
+        while (cartIdx < shoppingCart.length && codeIdx < codeList.length) {
+            String cur = shoppingCart[cartIdx];
+//            If the first fruit of the codeList is anything or if it matches the current fruit at the cart idx.
+            if((codeList[codeIdx][0].equals("anything") || codeList[codeIdx][0].equals(cur)) && hasOrder(shoppingCart, cartIdx, codeList[codeIdx])){
+                cartIdx += codeList[codeIdx++].length;
+            }else{
+                cartIdx++;
+            }
+        }
+//        If the all the codeList is present then return 1, else 0.
+        return codeIdx == codeList.length ? 1 : 0;
+    }
+
+    private static boolean hasOrder(String[] shoppingCart, int idx, String[] order) {
+//        Loop through the codeList to check if the fruits are in order.
+        for (String s : order) {
+            if (idx < shoppingCart.length && (s.equals("anything") || shoppingCart[idx].equals(s))){
+                idx++;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+
+V   Amazon Music Pairs  2020    Experienced HackerRank  USA/India
+
+
+V    Items in Containers 2020    Experienced SHL/HackerRank  USA
+public class ItemsInContainers {
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(numberOfItems("*|*|", new int[]{1}, new int[]{3})));
+        System.out.println(Arrays.toString(numberOfItems("*|*|*|", new int[]{1}, new int[]{6})));
+    }
+
+    private static int[] numberOfItems(String str, int[] starts, int[] ends) {
+        int len = str.length();
+        int[] result = new int[starts.length], left = new int[len], right = new int[len];
+//        Left array will have the index of close\open located on the left side.
+//        Right array will have the index of close\open located on the right side.
+        int[] presum = new int[len];
+        presum[0]= str.charAt(0)=='|'?0:1;
+        int closeIdx = Integer.MAX_VALUE;
+        for (int i = len - 1; i >= 0; i--) {
+            if (str.charAt(i) == '|') closeIdx = i;
+            right[i] = closeIdx;
+        }
+        closeIdx = Integer.MAX_VALUE;
+        for (int i = 0; i < len; i++) {
+            if (str.charAt(i) == '|') closeIdx = i;
+            left[i] = closeIdx;
+            if(i>=1){
+                presum[i] = str.charAt(i)=='|' ? presum[i-1]:presum[i-1]+1;
+            }
+        }
+        for (int i = 0; i < starts.length; i++) {
+            int start = starts[i], end = ends[i];
+            int startIdx = right[start - 1], endIdx = left[end - 1];
+            result[i] = getCount(startIdx, endIdx, str, presum);
+        }
+        return result;
+    }
+
+    private static int getCount(int startIdx, int endIdx, String str,int[] presum) {
+        if (startIdx == Integer.MAX_VALUE || endIdx == Integer.MAX_VALUE || startIdx >= endIdx) return 0;
+        return presum[endIdx] - presum[startIdx];
+    }
+}
+
+
+V    Largest Item Association    2020    Experienced SHL USA
+Union Find.
+
+
+V    Turnstile   2020    Experienced SHL/HackerRank  USA
+    public static int[] getTimes(int numCustomers, int[] arrTime, int[] direction) {
+        Queue<int[]> in = new LinkedList<>(), out = new LinkedList<>();
+//        0: time, 1: idx
+        for (int i = 0; i < arrTime.length; i++) {
+            int time = arrTime[i], dir = direction[i];
+            if (dir == 1) {
+                out.add(new int[]{time, i});
+            } else {
+                in.add(new int[]{time, i});
+            }
+        }
+        int[] times = new int[arrTime.length];
+        int pre = 1, time = 0;
+        while (!in.isEmpty() || !out.isEmpty()) {
+            boolean hasIn = !in.isEmpty() && in.peek()[0] <= time;
+            boolean hasOut = !out.isEmpty() && out.peek()[0] <= time;
+            if (hasIn && hasOut) {
+                if (pre == 1) {
+//                    Let the person out
+                    times[out.poll()[1]] = time;
+                } else {
+                    times[in.poll()[1]] = time;
+                }
+            } else if (hasIn) {
+                times[in.poll()[1]] = time;
+                pre = 0;
+            } else if (hasOut) {
+                times[out.poll()[1]] = time;
+                pre = 1;
+            } else {
+                pre = 1;
+            }
+            time++;
+        }
+        return times;
+    }
+V    Five Star Sellers   2020    Experienced HackerRank  USA/Canada
+public class Solution {
+    public static int fiveStarReviews(int[][] productRatings, int ratingsThreshold) {
+        int len = productRatings.length;
+        PriorityQueue<Node> pq = new PriorityQueue<>((a,b)->Double.compare(b.val,a.val));
+        double curval = 0;
+        for(int[] p:productRatings){
+            pq.add(new Node(p[0],p[1]));
+        
+            curval += (double)p[0]/p[1];
+        }
+        curval/=len;
+        int res = 0;
+        while(curval*100<ratingsThreshold){
+            Node cur = pq.poll();
+            double r = cur.overall(len);
+            curval+=r;
+            res++;
+            pq.add(new Node(cur.x+1,cur.y+1));
+        }
+        
+        return res;
+    }
+
+
+
+    public class Node{
+    double x;
+    double y;
+    double val;
+    public Node(double x,double y){
+        this.x = x;
+        this.y = y;
+        this.val = calculate();
+        
+    }
+    
+    public double calculate(){
+        return (double)(x+1)/(y+1) - (double) x/y;
+    }
+    
+    public double overall(int n){
+        return (double)val/n;
+    }
+    
+}    
+}
+
+
+V  LC#1335  Beta Testing    2020    Experienced HackerRank  USA/Canada
+
+
+V    Utilization Checks  2020    Experienced HackerRank  USA/India
+ public static int finalInstances(int instances, int[] averageUtil) {
+        int skip = 0;
+        for (int avg : averageUtil) {
+            if (skip > 0) {
+                skip--;
+            } else {
+                int newInstance = instances;
+                if (avg < 25) {
+                    if (instances == 1) continue;
+                    newInstance = (instances / 2) + (instances % 2);
+                } else if (avg > 60) {
+                    long doubled = instances * 2L;
+                    newInstance = doubled > 2_0000_0000 ? instances : 2 * instances;
+                }
+                if (newInstance != instances) {
+                    instances = newInstance;
+                    skip = 10;
+                }
+            }
+        }
+        return instances;
+    }
+}
+
+
+V    Top K Frequently Mentioned Keywords 2020    Experienced SHL USA
+
+
+
+V    Transaction Logs    2020    Experienced HackerRank  USA
+
+
+V    Substrings of Size K with K-1 Distinct Chars    2020    Experienced SHL/HackerRank  USA
+
+
+V    Number of Islands   2020    Experienced SHL/HackerRank  USA
+V    Most Common Word    2020    Experienced SHL/HackerRank  USA
+
+public static String mostCommonWord(String paragraph, String[] banned) {
+        Set<String> set = new HashSet<>();
+        Collections.addAll(set, banned);
+        StringBuilder sb = new StringBuilder();
+        Map<String, Integer> map = new HashMap<>();
+        String result = "";
+        int max = 0;
+        for (int i = 0; i < paragraph.length(); i++) {
+            char cur = paragraph.charAt(i);
+            if (cur == ' ' || cur == '!' || cur == '?' || cur == '\'' || cur == ',' || cur == ';' || cur == '.') {
+                if (sb.length() == 0) continue;
+                String word = sb.toString();
+                sb = new StringBuilder();
+                if(set.contains(word)) continue;
+                int count = map.getOrDefault(word, 0);
+                map.put(word, count + 1);
+                if (count + 1 > max) {
+                    result = word;
+                    max = count + 1;
+                }
+            } else {
+                sb.append(Character.toLowerCase(cur));
+            }
+        }
+        String word = sb.toString();
+        int count = map.getOrDefault(word, 0);
+        map.put(word, count + 1);
+        if (count + 1 > max) {
+            result = word;
+        }
+        return result;
+    }
+
+V   Rover Control   2020    Experienced HackerRank  USA
+static int[][] dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    private static int roverMove(int n, String[] directions) {
+        int row = 0, col = 0;
+        for (String dir : directions) {
+            int idx = getDirIdx(dir);
+            int nr = row + dirs[idx][0], nc = col + dirs[idx][1];
+            if (nr >= 0 && nr < n && nc >= 0 && nc < n) {
+                row = nr;
+                col = nc;
+            }
+        }
+        return (row * n) + col;
+    }
+
+    private static int getDirIdx(String dir) {
+        if (dir.equals("UP")) return 0;
+        if (dir.equals("DOWN")) return 1;
+        if (dir.equals("LEFT")) return 2;
+        return 3;
+    }
+
+V    Distance Between Nodes in BST   2020    Experienced SHL USA/UK
+// Java program to find distance between  
+// two nodes in BST  
+class GfG {  
+  
+static class Node {  
+    Node left, right;  
+    int key;  
+} 
+  
+static Node newNode(int key)  
+{  
+    Node ptr = new Node();  
+    ptr.key = key;  
+    ptr.left = null; 
+    ptr.right = null;  
+    return ptr;  
+}  
+  
+// Standard BST insert function  
+static Node insert(Node root, int key)  
+{  
+    if (root == null)  
+        root = newNode(key);  
+    else if (root.key > key)  
+        root.left = insert(root.left, key);  
+    else if (root.key < key)  
+        root.right = insert(root.right, key);  
+    return root;  
+}  
+  
+// This function returns distance of x from  
+// root. This function assumes that x exists  
+// in BST and BST is not NULL.  
+static int distanceFromRoot(Node root, int x)  
+{  
+    if (root.key == x)  
+        return 0;  
+    else if (root.key > x)  
+        return 1 + distanceFromRoot(root.left, x);  
+    return 1 + distanceFromRoot(root.right, x);  
+}  
+  
+// Returns minimum distance beween a and b.  
+// This function assumes that a and b exist  
+// in BST.  
+static int distanceBetween2(Node root, int a, int b)  
+{  
+    if (root == null)  
+        return 0;  
+  
+    // Both keys lie in left  
+    if (root.key > a && root.key > b)  
+        return distanceBetween2(root.left, a, b);  
+  
+    // Both keys lie in right  
+    if (root.key < a && root.key < b) // same path  
+        return distanceBetween2(root.right, a, b);  
+  
+    // Lie in opposite directions (Root is  
+    // LCA of two nodes)  
+    if (root.key >= a && root.key <= b)  
+        return distanceFromRoot(root, a) + distanceFromRoot(root, b); 
+          
+    return 0; 
+}  
+  
+// This function make sure that a is smaller  
+// than b before making a call to findDistWrapper()  
+static int findDistWrapper(Node root, int a, int b)  
+{  
+    int temp = 0; 
+if (a > b)  
+    { 
+    temp = a; 
+    a = b; 
+    b = temp; 
+    }  
+return distanceBetween2(root, a, b);  
+}  
+
+V    Robotics Challenge  2020    Experienced SHL USA/UK
+V    K Closest Points to Origin  2020    Experienced SHL USA
+V    Shopping Patterns   2020    Experienced SHL/HackerRank  USA/India
+static int min;
+
+    private static int getMinScore(int nodes, int edges, int[] from, int[] to) {
+        min = Integer.MAX_VALUE;
+        Map<Integer, Set<Integer>> graph = new HashMap<>();
+        for (int i = 0; i < edges; i++) {
+            graph.computeIfAbsent(from[i], val -> new HashSet<>()).add(to[i]);
+            graph.computeIfAbsent(to[i], val -> new HashSet<>()).add(from[i]);
+        }
+        boolean[] visited = new boolean[nodes + 1];
+        for (int i = 1; i <= nodes; i++) {
+            if (graph.containsKey(i)) {
+                dfs(i, i, graph, visited, 0, 1);
+            }
+        }
+        return min == Integer.MAX_VALUE ? -1 : min;
+    }
+
+    private static void dfs(int start, int cur, Map<Integer, Set<Integer>> graph, boolean[] visited, int score, int edge) {
+        visited[cur] = true;
+        Set<Integer> connections = graph.getOrDefault(cur, new HashSet<>());
+        int curScore = connections.size() - edge, totalScore = score + curScore;
+        for (int next : connections) {
+            if (edge == 3) {
+                if (next == start) {
+                    min = Math.min(min, totalScore);
+                }
+            } else if (!visited[next] && edge < 3) {
+                dfs(start, next, graph, visited, totalScore, edge + 1);
+            }
+        }
+        visited[cur] = false;
+    }
+V    Gifting Groups  2020    Experienced HackerRank  USA/India
+
+
+    Cut off Rank    2020    New Grad/Intern SHL USA
+public static int cutOffRank_rev2(int cutOffRank, int num, int[] scores) {
+        Arrays.sort(scores);
+        int total = 0, preScore = 0;
+        for (int i = scores.length - 1; i >= 0; i--) {
+            int curScore = scores[i];
+            if (preScore == curScore) {
+                total++;
+            } else {
+                if (total >= cutOffRank) break;
+                total++;
+                preScore = curScore;
+            }
+        }
+        return total;
+    }
+
+    Fill The Truck  2020    New Grad    SHL USA/Canada
+
+    Disk Space Analysis 2020    New Grad    SHL USA
+    Nearest City    2020    New Grad    SHL USA
+    Subtree with Maximum Average    2020    New Grad    SHL USA
+    Break a Palindrome  2020    New Grad    SHL USA/Canada
+    Smallest Negative Balance   2020    New Grad    SHL USA
+    Find The Highest Profit 2020    New Grad    SHL USA
+    Ways to Split String Into Prime Numbers 2020    New Grad    SHL USA
+    Fetch Items to Display  2020    New Grad    SHL USA/Canada
+    Packaging Automation    2020    New Grad    SHL USA
+    Min Distance Between Robots 2020    New Grad    SHL USA
+    Power Grid  2020    New Grad    SHL USA
+    Count Teams 2020    New Grad    SHL USA
+
+We use an extra array to keep track of factorials.
+  public int countTeams(int num, int[] skills, int minAssociates, int minLevel, int maxLevel) {
+    // 1. find associates with right level of skill
+    int satisfied = 0;
+    for (int skill : skills) {
+      if (skill <= maxLevel && skill >= minLevel) {
+        satisfied++;
+      }
+    }
+
+    // 2. not enough associates to form the team
+    if (satisfied < minAssociates) {
+      return 0;
+    }
+
+    /*
+    3. assemble the team
+      3.1. choose minAssociates from satisfied
+      3.2. choose minAssociates + 1 from satisfied
+      ...
+      3.k choose minAssociates + k from satisfied, where minAssociates + k == satisfied
+    
+    use combination algorithm. choose k from n,  C(n, k) = n!/ (n - k)! * k!
+     */
+    int[] factorial = new int[satisfied + 1];
+    factorial[0] = 1;
+    for (int i = 1; i <= satisfied; i++) {
+      factorial[i] = factorial[i - 1] * i;
+    }
+
+    int total = 0;
+    for (int i = minAssociates; i <= satisfied; i++) {
+      total += factorial[satisfied] / factorial[i] * factorial[satisfied - i];
+    }
+
+    return total;
+  }
+
+    Copy List with Random Pointer   2020    New Grad    SHL Europe/India
+
+
+    LRU Cache Misses    2020    Intern  SHL USA
+    Earliest Time to Complete Deliveries    2020    Intern  SHL USA
+    Chemical Delivery System    2020    Intern  SHL USA
+    Labeling System 2020    Intern  SHL USA
+    Merge Two Sorted Lists  2020    Intern  SHL USA/India
+    Subtree of Another Tree 2020    Intern  SHL India
+    Search a 2D Matrix II   2020    Intern  SHL India
+    Critical Connections    2020    Intern  SHL India
+    Maximal Square  2020    Intern  SHL USA
+    Throttling Gateway  2020    Intern  HackerRank/SHL  USA
+    Unique Device Names 2020    Intern  SHL USA
+    Divisibility of Strings 2020    Intern  SHL USA
+    Multiprocessor System   2020    Intern  SHL USA
+    Winning Sequence    2020    Intern  SHL USA
+    Slowest Key Press   2020    Intern  SHL USA
+V   Two Sum - Unique Pairs  2020    Intern  SHL USA
+    Keyword Suggestions 2020    Intern  SHL USA
+
+
+
+    I see this opportunity as a way to contribute to an exciting customer centric, moving-fast industry, and I can do so with the strong coding skill and good colaborative ability in the agile development environment. 

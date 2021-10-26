@@ -117,3 +117,57 @@ class Solution {
         return root.get(s)==s?s:find(root.get(s),root);
     }
 }
+
+
+class Solution {
+    public List<List<String>> accountsMerge(List<List<String>> accounts) {
+        List<List<String>> res = new ArrayList<>();
+        HashMap<String,String> root = new HashMap<>();
+        HashMap<String,String> owner = new HashMap<>();
+        HashMap<String,Set<String>> link = new HashMap<>();        
+        for(List<String> account:accounts){
+            for(int j=1;j<account.size();j++){
+                root.put(account.get(j),account.get(j));
+                owner.put(account.get(j),account.get(0));
+            }
+        }
+        
+        for(List<String> account:accounts){
+            String par1 = find(account.get(1),root);
+            for(int j=2;j<account.size();j++){
+                String par2 = find(account.get(j),root);
+                if(par1!=par2)
+                    union(par2,par1,root);
+            }
+        }
+        
+        for(List<String> account:accounts){
+            String par = find(account.get(1),root);
+            link.putIfAbsent(par,new TreeSet<>());
+            for(int j=1;j<account.size();j++){
+                link.get(par).add(account.get(j));
+            }
+        }
+        int idx = 0;
+        for(String key : link.keySet()){
+            Set<String> set = link.get(key);
+            String person = owner.get(set.iterator().next());
+            res.add(new ArrayList<>());
+            res.get(idx).add(person);
+            res.get(idx++).addAll(set);
+        }
+        
+        return res;
+    }
+    public void union(String i,String j,HashMap<String,String> root){    
+        if(i==j) return ;
+        root.put(i,j);
+    }
+    public String find(String acc,HashMap<String,String> root){
+        if(root.get(acc)==acc) return acc;
+        String par = root.get(acc);
+        String parpar = find(root.get(acc),root);
+        root.put(par,parpar);
+        return parpar;
+    }
+}

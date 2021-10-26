@@ -94,3 +94,71 @@ class Solution {
         return cache[d][target]=ans;
     }
 }
+
+
+
+
+167 
+Two Sum II - Input array is sorted  55.6%   Easy    
+257 
+Binary Tree Paths   53.4%   Easy    
+35  
+Search Insert Position  42.8%   Easy    
+107 
+Binary Tree Level Order Traversal II    55.1%   Easy    
+161 
+One Edit Distance
+33.0%   Medium  
+1143    
+Longest Common Subsequence  58.6%   Medium  
+47  
+Permutations II 49.3%   Medium  
+61  
+Rotate List 31.7%   Medium  
+328 
+Odd Even Linked List    57.0%   Medium  
+242 
+Valid Anagram   58.1%   Easy    
+349 
+Intersection of Two Arrays  64.6%   Easy    
+151 
+Reverse Words in a String   23.6%   Medium  
+6   
+ZigZag Conversion   37.8%   Medium  
+66  
+Plus One    42.4%   Easy    
+145 
+Binary Tree Postorder Traversal 57.4%   Medium  
+73  
+Set Matrix Zeroes   44.2%   Medium  
+118 
+Pascal's Triangle   54.7%   Easy    
+136 
+Single Number   66.5%   Easy    
+142 
+Linked List Cycle II    39.6%   Medium  
+141 
+Linked List Cycle   42.8%   Easy    
+350 
+Intersection of Two Arrays II   52.0%   Easy    
+198 
+House Robber    42.8%   Medium  
+26  
+Remove Duplicates from Sorted Array 46.5%   Easy    
+28  
+Implement strStr()  35.1%   Easy    
+881 
+Boats to Save People    48.8%   Medium  
+27  
+Remove Element  49.2%   Easy    
+344 
+Reverse String  70.2%   Easy    
+104 
+Maximum Depth of Binary Tree    67.9%   Easy    
+
+
+282
+315
+368
+493
+650

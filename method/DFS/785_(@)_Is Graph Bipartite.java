@@ -57,7 +57,8 @@ The graph is undirected: if any element j is in graph[i], then i will be in grap
 
  
 
-
+要驗證全局  找到True 不代表全局true
+           找到FALSE 代表全局FALSE
 class Solution {
     public boolean isBipartite(int[][] graph) {
         int[] colors = new int[graph.length];

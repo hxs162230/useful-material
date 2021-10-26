@@ -76,7 +76,7 @@ class Solution {
         while(i<words.length){
             j=i;
             len=0;
-            while(j<words.length&&(len+words[j].length()+j-i)<=maxWidth){
+            while(j<words.length&&(len+words[j].length()+(j-1)-i+1)<=maxWidth){
                 len+=words[j++].length();
             }
             int space = maxWidth - len;

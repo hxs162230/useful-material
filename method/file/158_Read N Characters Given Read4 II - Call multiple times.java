@@ -128,7 +128,7 @@ public class Solution extends Reader4 {
      */
     char[] buffer = new char[4];
     public int read(char[] buf, int n) {
-        int cur=0;
+        //int cur=0;
         int pointer=0;
         while(pointer<n){
             int i = read4(buffer);

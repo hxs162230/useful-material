@@ -36,6 +36,7 @@ class Solution {
         int[] dp  = new int[K];
         int sum=0;
         int cnt=0;
+        //次數相關  init=1
         dp[0]=1;
         for(int i=0;i<A.length;i++){
             sum+=A[i];

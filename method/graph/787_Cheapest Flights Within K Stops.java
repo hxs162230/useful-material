@@ -89,3 +89,41 @@ class Solution {
 
 
 
+Some explanation.
+The key difference with the classic Dijkstra algo is, we don't maintain the global optimal distance to each node, i.e. ignore below optimization:
+alt ← dist[u] + length(u, v)
+if alt < dist[v]:
+Because there could be routes which their length is shorter but pass more stops, and those routes don't necessarily constitute the best route in the end. To deal with this, rather than maintain the optimal routes with 0..K stops for each node, the solution simply put all possible routes into the priority queue, so that all of them has a chance to be processed. IMO, this is the most brilliant part.
+And the solution simply returns the first qualified route, it's easy to prove this must be the best route.
+
+
+
+class Solution {
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+        HashMap<Integer,HashSet<int[]>> map = new HashMap<>();
+        for(int[] f:flights){
+            map.putIfAbsent(f[0],new HashSet<>());
+            map.get(f[0]).add(new int[]{f[1],f[2]});
+        }
+        PriorityQueue<int[]> q = new PriorityQueue<>((a,b)->(a[0]-b[0]));
+        q.add(new int[]{0,src,K+1});
+        
+        while(!q.isEmpty()){
+            for(int size=q.size();size>0;size--){
+                int[] t = q.poll();
+                int curNode = t[1];
+                int rStop = t[2];
+                int minD = t[0];
+                if(curNode==dst) return minD;
+                if(rStop<=0) continue;
+                if(map.containsKey(curNode))
+                for(int[] next:map.get(curNode)){
+                    //if(next[1]+minD>=minD) continue;
+                    q.add(new int[]{next[1]+minD,next[0],rStop-1});
+                }
+            }
+
+        }
+        return -1;
+    }
+}

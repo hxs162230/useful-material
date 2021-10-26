@@ -106,3 +106,53 @@ public int[] LPS(String pat){
 
 
 
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        //if(haystack.length()==0) return -1;
+        if(needle.length()==0) return 0;
+        int[] lps = LPS(needle);
+        int i = 0;
+        int j = 0;
+        int ilen = haystack.length();
+        int jlen = needle.length();
+        while(i<ilen&&j<jlen){
+            if(haystack.charAt(i)==needle.charAt(j)){
+                i++;
+                j++;
+            }
+            if(j==jlen){
+                return i-j;
+            }
+            else if(i<ilen&&haystack.charAt(i)!=needle.charAt(j)){
+                if(j>0){
+                    j = lps[j-1];
+                }
+                else{
+                    i++;
+                }
+            }
+        }
+        return -1;
+    }
+    public int[] LPS(String s){
+        int[] res = new int[s.length()];
+        int i = 1;
+        int l = 0;
+        int len = s.length();
+        while(i<len){
+            if(s.charAt(i)==s.charAt(l)){
+                res[i++] = ++l;
+            }
+            else{
+                if(l>0){
+                    l = res[l-1];
+                }
+                else{
+                    res[i++] = 0;
+                }
+            }
+        }
+        return res;
+    }
+}

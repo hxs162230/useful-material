@@ -55,6 +55,10 @@ You could stay at a city beyond the number of vacation days, but you should work
 If you fly from the city A to the city B and take the vacation on that day, the deduction towards vacation days will count towards the vacation days of city B in that week.
 We don't consider the impact of flight hours towards the calculation of vacation days.
 
+
+
+@@ 這題類似二維的01背包問題 flight[][]:2dimension;
+
 time O(kNN)
 space O(kN)
 class Solution {

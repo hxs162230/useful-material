@@ -45,3 +45,30 @@ class Solution {
         return res;
     }
 }
+
+
+
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        if(board.length==0||board[0].length==0) return false;
+        boolean[][] visit = new boolean[board.length][board[0].length];
+        for(int i=0;i<board.length;i++){
+            for(int j=0;j<board[0].length;j++){
+                if(dfs(i,j,visit,board,word,0)) return true;
+            }
+        }
+        return false;
+    }
+    int[][] dirs = {{1,0},{0,1},{-1,0},{0,-1}};
+    public boolean dfs(int i,int j,boolean[][] visit,char[][] board,String word,int idx){
+        if(idx==word.length()) return true;
+        if(i<0||j<0||i>=board.length||j>=board[0].length||board[i][j]!=word.charAt(idx)||visit[i][j]) return false;
+        if(!visit[i][j]) 
+            visit[i][j]=true;
+        for(int[] dir:dirs)
+            if(dfs(i+dir[0],j+dir[1],visit,board,word,idx+1)) return true;
+                     
+        visit[i][j]=false;
+        return false;
+    }
+}

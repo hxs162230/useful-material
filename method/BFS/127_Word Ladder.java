@@ -75,3 +75,50 @@ class Solution {
         return 0;
     }
 }
+
+
+
+Bi-direction bfs
+time O(N/2)
+
+class Solution {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        HashSet<String> dict = new HashSet<>(wordList);
+        //dict.add(beginWord);
+        if(!dict.contains(endWord)) return 0;
+        if (beginWord.equals(endWord)) return 1;
+        Set<String> q1 = new HashSet<>();
+        Set<String> q2 = new HashSet<>();
+        q1.add(beginWord);
+        q2.add(endWord);
+        int step = 0;
+        while(!q1.isEmpty()&&!q2.isEmpty()){
+            ++step;
+            if(q1.size()>q2.size()){
+                Set<String> tmp = q1;
+                q1 = q2;
+                q2 = tmp;
+            }
+            Set<String> nextSet = new HashSet<>();
+            for(String curStr:q1){
+                char[] curArr = curStr.toCharArray();
+                for(int i=0;i<curArr.length;i++){
+                    for(char c='a';c<='z';c++){
+                        if(curArr[i]==c) continue;
+                        char old = curArr[i];   
+                        curArr[i] = c;
+                        String nextStr = String.valueOf(curArr);
+                        if(q2.contains(nextStr)) return step+1;
+                        if(dict.contains(nextStr)){
+                            dict.remove(nextStr);
+                            nextSet.add(nextStr);
+                        }
+                        curArr[i] = old;
+                    }
+                }
+            }
+            q1 = nextSet;
+        }
+        return 0;
+    }   
+}

@@ -52,7 +52,7 @@ Functions will always log when they exit.
 如果是start，我们将当前函数压入栈；
 如果是end，那么我们将栈顶元素取出，对其加1秒，并且preTime也要加1秒，参见代码如下：
 
-
+id:label:time
  class Solution {
     public int[] exclusiveTime(int n, List<String> logs) {
         Stack<Integer> stk = new Stack<>();

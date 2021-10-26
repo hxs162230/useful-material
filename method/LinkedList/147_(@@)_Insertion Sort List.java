@@ -52,3 +52,23 @@ class Solution {
         
     }
 }
+
+
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        ListNode dmy = new ListNode(Integer.MIN_VALUE);
+        while(head!=null){
+            ListNode next = head.next;
+            ListNode cur = dmy;
+            
+            while(cur.next!=null&&cur.next.val<head.val){
+                cur = cur.next;
+            }
+            head.next = cur.next;
+            cur.next = head;
+            
+            head = next;
+        }
+        return dmy.next;
+    }
+}

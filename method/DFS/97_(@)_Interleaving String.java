@@ -61,3 +61,30 @@ class Solution {
         
     }
 }
+
+
+class Solution {
+    HashMap<Integer,Boolean> cache;
+    public boolean isInterleave(String s1, String s2, String s3) {
+        cache = new HashMap<>();
+        int m =s1.length();
+        int n =s2.length();
+        int o =s3.length();
+        if(m+n!=o) return false;
+        return dfs(0,0,0,s1,s2,s3);
+    }
+    public boolean dfs(int i,int j,int k,String s1,String s2,String s3){
+        if(i==s1.length()) return s2.substring(j).equals(s3.substring(k));
+        if(j==s2.length()) return s1.substring(i).equals(s3.substring(k));
+        int code = i*s3.length()+j;
+        if(cache.containsKey(code)) return cache.get(code);
+        
+        if(s1.charAt(i)==s3.charAt(k)&&dfs(i+1,j,k+1,s1,s2,s3)||
+           dfs(i,j+1,k+1,s1,s2,s3)&&s2.charAt(j)==s3.charAt(k)){
+            cache.put(code,true);
+            return true;
+        }
+        cache.put(code,false);
+        return false;
+    }
+}

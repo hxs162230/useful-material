@@ -22,3 +22,20 @@ class Solution {
         return cand;
     }
 }
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int len = nums.length;
+        int candidate = nums[0];
+        int vote = 0;
+        for(int num:nums){
+            if(num==candidate) vote++;
+            else if(vote==0){
+                candidate = num;
+                vote++;
+            }
+            else vote--;
+        }
+        return candidate;
+    }
+}

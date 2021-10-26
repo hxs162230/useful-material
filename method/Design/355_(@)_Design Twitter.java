@@ -141,3 +141,69 @@ class Twitter {
  * obj.follow(followerId,followeeId);
  * obj.unfollow(followerId,followeeId);
  */
+
+
+class Twitter {
+    HashMap<Integer,HashSet<Integer>> followee = new HashMap<>();
+    HashMap<Integer,List<Twit>> map = new HashMap<>();
+    int stamp  = 0;
+    class Twit{
+        int time;
+        int id;
+        public Twit(int time,int id){
+            this.time=time;
+            this.id = id;
+        }
+    }
+    /** Initialize your data structure here. */
+    public Twitter() {
+        
+    }
+    
+    /** Compose a new tweet. */
+    public void postTweet(int userId, int tweetId) {
+        this.follow(userId,userId);
+        map.putIfAbsent(userId,new LinkedList<>());
+        map.get(userId).add(0,new Twit(stamp++,tweetId));
+        //newer bigger
+    }
+    
+    /** Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users who the user followed or by the user herself. Tweets must be ordered from most recent to least recent. */
+    public List<Integer> getNewsFeed(int userId) {
+        List<Integer> res = new ArrayList<>();
+        HashSet<Integer> set = followee.get(userId);
+        //from old to new
+        PriorityQueue<Twit> pq = new PriorityQueue<>((a,b)->a.time-b.time);
+        if(set!=null)
+        for(int user:set){
+            if(map.get(user)!=null)
+            for(Twit tt: map.get(user)){
+                if(pq.size()<10){
+                    pq.add(tt);
+                }
+                else{
+                    pq.add(tt);
+                    pq.poll();
+                    if(tt.time<=pq.peek().time) break;
+                }
+            }
+        }
+        while(!pq.isEmpty()){
+            res.add(0,pq.poll().id);
+        }
+        return res;
+    }
+    
+    /** Follower follows a followee. If the operation is invalid, it should be a no-op. */
+    public void follow(int followerId, int followeeId) {
+        followee.putIfAbsent(followerId,new HashSet<>());
+        followee.get(followerId).add(followeeId);
+    }
+    
+    /** Follower unfollows a followee. If the operation is invalid, it should be a no-op. */
+    public void unfollow(int followerId, int followeeId) {
+        if(followee.containsKey(followerId)&&followeeId!=followerId){
+            followee.get(followerId).remove(followeeId);
+        }
+    }
+}

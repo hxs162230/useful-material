@@ -112,3 +112,61 @@ class FileSystem {
  * obj.addContentToFile(filePath,content);
  * String param_4 = obj.readContentFromFile(filePath);
  */
+
+
+class FileSystem {
+    HashMap<String,TreeSet<String>> dirs = new HashMap<>();
+    HashMap<String,String> fileContent = new HashMap<>();
+    
+    public FileSystem() {
+        dirs.put("/",new TreeSet<>());    
+    }
+    
+    public List<String> ls(String path) {
+        int idx = path.lastIndexOf("/");
+        
+        String last = path.substring(idx+1);
+        if(fileContent.containsKey(last)){
+            List<String> lst = new ArrayList<>();
+            lst.add(last);
+            return lst;
+        }
+        
+        return new ArrayList<>(dirs.get(path));
+    }
+    
+    public void mkdir(String path) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("/");
+        String[] dir = path.split("\\/");
+        for(int i=1;i<dir.length;i++){
+            dirs.get(sb.toString()).add(dir[i]);
+            if(sb.length()>1) sb.append("/");
+            sb.append(dir[i]);
+            dirs.putIfAbsent(sb.toString(),new TreeSet<>());
+        }
+    }
+    
+    public void addContentToFile(String filePath, String content) {
+        int idx = filePath.lastIndexOf("/");
+        String last = filePath.substring(idx+1);
+        String dirpath = filePath.substring(0,idx);
+        if(dirpath.length()==0) dirpath = "/";
+        if(!dirs.containsKey(dirpath)) this.mkdir(dirpath);
+        if(dirs.containsKey(dirpath)) dirs.get(dirpath).add(last);
+        if(!fileContent.containsKey(last)){
+            fileContent.put(last,content);
+        }
+        else{
+            fileContent.put(last,fileContent.get(last)+content);
+        }
+        
+    }
+    
+    public String readContentFromFile(String filePath) {
+        int idx = filePath.lastIndexOf("/");
+        String last = filePath.substring(idx+1);
+        if(!fileContent.containsKey(last)) return "";
+        else return fileContent.get(last);
+    }
+}

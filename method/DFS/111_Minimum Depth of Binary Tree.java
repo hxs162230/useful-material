@@ -29,6 +29,10 @@ return its minimum depth = 2.
  * }
  */
 
+        1
+   null     2     
+-> d = 2 (not 1)
+
 T:O(N)
 S:O(N)
 postorder 

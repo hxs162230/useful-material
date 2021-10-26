@@ -43,6 +43,9 @@ There are no repeated connections.
 |         |  
 |---------|
 
+
+O(V+E) complexity
+
 class Solution {
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();

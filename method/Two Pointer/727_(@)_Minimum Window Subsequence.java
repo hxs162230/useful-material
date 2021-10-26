@@ -43,6 +43,8 @@ The length of T will be in the range [1, 100].
                 if(tidx==T.length()){
                     int end = sidx;
                     while(--tidx>=0){
+
+                        //只能寫這樣  不然會出錯
                         while(S.charAt(sidx--)!=T.charAt(tidx));
                     }
                     sidx++;

@@ -69,3 +69,55 @@ class Solution {
         return -1;
     }
 }
+
+
+bi bfs
+class Solution {
+    public int numBusesToDestination(int[][] routes, int S, int T) {
+        int n = routes.length;
+        HashMap<Integer,List<Integer>> map = new HashMap<>();
+        if(S==T) return 0;
+        for(int i=0;i<n;i++){
+            for(int j:routes[i]){
+                map.putIfAbsent(j,new ArrayList<>());
+                map.get(j).add(i);
+            }
+        }
+        
+        HashSet<Integer> q1 = new HashSet<>();
+        HashSet<Integer> q2 = new HashSet<>();
+        q1.add(S);
+        q2.add(T);
+        
+        HashSet<Integer> seen = new HashSet<>();
+        boolean[] sRoutes = new boolean[n];
+        int stop = 0;
+        
+        while(!q1.isEmpty()&&!q2.isEmpty()){
+            if(q1.size()>q2.size()){
+                HashSet<Integer> t = q1;
+                q1 = q2;
+                q2 =t;
+            }
+            HashSet<Integer> nextSet = new HashSet<>();
+            for(int curNode : q1){
+            
+                for(int routeNum : map.get(curNode)){
+                    if(sRoutes[routeNum]) continue;        
+                    
+                    for(int nextNode : routes[routeNum]){
+                        if(q2.contains(nextNode)) return stop+1;
+                        if(seen.contains(nextNode)) continue;
+                        seen.add(nextNode);
+                        nextSet.add(nextNode);
+                    }
+                    
+                    sRoutes[routeNum] = true;
+                }
+            }
+            q1 = nextSet;
+            stop++;
+        }
+        return -1;
+    }
+}

@@ -152,3 +152,59 @@ public class ParkingSpot
       level that a new spot is available */
     public void removeVehicle() { ... } 
 } 
+
+
+
+
+amazon locker
+Use cases
+
+Put a package into a locker
+Get a package from a locker
+Find a locker space for a package and reserve it
+Track if a package in locker or not
+Shipping status?
+Expiration for a package in a locker?
+Access control - normal user cannot do admin works?
+History?
+Multiple packages in one slot?
+Classes
+Locker
+fields:
+
+Slots - [slots]
+location
+Map - code to slot
+Locker ID
+methods
+Reserve - lock a slot for a package to come in
+Private - Open - open a slot
+Lookup - find available slots for certain package size
+Put - put a package in
+Retrieve - get a package out
+checkExpired - check all expired slots
+Private - isAdmin - check if the current user is an admin
+Close - close a slot - serves as a confirmation for operations
+Private - Generate code
+Package
+Fields:
+
+Id
+size - enum?
+Status - preparing, shipped, arrived, received, returned?
+Locker id
+Slot id
+Locker code
+Method:
+Update status
+Update locker info
+Slot
+Fields:
+
+Size
+Id
+Expiration date
+packageID
+Method:
+Put - put a package in
+Get - get a package out

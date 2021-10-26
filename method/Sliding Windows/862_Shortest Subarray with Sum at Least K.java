@@ -49,8 +49,10 @@ class Solution {
                 min = Math.min(min,i-deq.pollFirst());
             }
 //             Why keep the deque increase?
-//             If B[i] <= B[d.back()] and moreover we already know that i > d.back(), it means that compared with d.back(),
-//             B[i] can help us make the subarray length shorter and sum bigger. So no need to keep d.back() in our deque.
+//             If B[i] <= B[d.back()] and moreover we already know that i > d.back(), 
+//             it means that compared with d.back(),
+//             B[i] can help us make the subarray length shorter and sum bigger. 
+//             So no need to keep d.back() in our deque.
             // sum[i]  -  sum[deq.peekLast()] <=0
             while(!deq.isEmpty()&&sum[i]<=sum[deq.peekLast()]){
                 deq.pollLast();
@@ -60,3 +62,5 @@ class Solution {
         return min==A.length+1?-1:min;
     }
 }
+
+

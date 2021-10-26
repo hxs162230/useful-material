@@ -68,6 +68,7 @@ class Solution {
 similar to #1011
 time NlogN
 space 1
+min of max
 class Solution {
     public int splitArray(int[] nums, int m) {
         long left = 0;

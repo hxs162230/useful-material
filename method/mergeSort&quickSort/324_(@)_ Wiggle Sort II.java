@@ -47,6 +47,7 @@ class Solution {
         return (i*2+1)%(n|1);                         | bitwise OR (a greater odd number)
     }
     public int quickSelect(int[] nums,int left,int right,int m){
+        if(left>=right) return nums[left];
         int pivot = partition(nums,left,right);
         if(pivot<m)
             return quickSelect(nums,pivot+1,right,m);

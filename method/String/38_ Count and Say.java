@@ -88,3 +88,28 @@ class Solution {
         return str;
     }
 }
+
+
+class Solution {
+    public String countAndSay(int n) {
+        if(n==1) return "1";
+        String cur = "1";
+ 
+        while(--n>0){
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            int j = 0;
+            while(i<cur.length()){
+                j=i;
+                while(j<cur.length()&&cur.charAt(i)==cur.charAt(j)){
+                    j++;
+                }
+                sb.append(j-i);
+                sb.append(cur.charAt(i));
+                i=j;
+            }
+            cur = sb.toString();
+        }
+        return cur;
+    }
+}
