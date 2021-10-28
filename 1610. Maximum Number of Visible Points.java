@@ -63,11 +63,16 @@ class Solution {
                 samePoint++;
                 continue;
             }
+            // -PI ~ +PI  思考一下  {atan2} (y,x)}returns a single value θ such that −π < θ ≤ π and, for some r > 0
             anglesInRadian.add(Math.atan2(dy,dx)*(180/Math.PI));
         }
         Collections.sort(anglesInRadian);
         List<Double> anglesTmp = new ArrayList<>(); 
         anglesTmp.addAll(anglesInRadian);
+
+        //0<degree<180   360<degree+360<540
+        //-180<degree<0  180<degree+360<360
+        //represent all degrees => -180~0 + 0~180 + 180~360 + 360~540
         for(Double ag:anglesInRadian){
             anglesTmp.add(ag+360);    
         }
